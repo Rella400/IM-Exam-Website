@@ -13,19 +13,39 @@
                          
                        }
 
-                       
+
 body {
-    width: 100%;
-    height: auto;
-    background-color: aqua;
-    padding: 20px;
-    border: 10px black solid;
-}
+        width: 100%;
+        height: auto;
+        background-color: aqua;
+        padding: 0px;
+        border: 10px black solid;
+        /*background-image: url('../images/wood.jpg');*/
+        /*background-attachment: fixed;*/
+     }
 
-/*nav{
-    position: fixed;
-}*/
+header {
+            background-color: burlywood;
+            width: 100%;
+            height: auto;
+            margin: 0;
+       }
 
+.menu {
+        flex-basis: 800px;
+      }
+
+
+footer ul {
+            display: flex;
+            justify-content: space-evenly;
+            /*gap: 5%;*/
+            padding: 0.5rem;
+            background-color: burlywood;
+            width: 100%;
+            height: auto;
+            margin: 0;
+          }
 
 p {
     line-height: 1.5;
@@ -45,40 +65,69 @@ textarea {
 
 nav, nav ul {
                 display: flex;
+                justify-content: space-between;
+                align-items: baseline;
                 /*gap: 5%;*/
                /* flex: 1*/
             }
+
 
 nav, nav ul li {
                     padding: 0.5rem;
                     /*margin: 0.3rem;*/
                }  
                
-footer ul {
-    display: flex;
-    gap: 5%;
-    padding: 0.5rem;
-}
+
 
 /*Fonts: 'Cinzel Decorative', 'IM Fell DW Pica SC', 'IM Fell DW Pica', 'Noticia Text'*/
 
 h1, h2, h3{
-    font-family:'Cinzel Decorative' ,'IM Fell DW Pica SC','Courier New', Courier, monospace ;
-}
+            font-family:'Cinzel Decorative' ,'IM Fell DW Pica SC','Courier New', Courier, monospace ;
+          }
 
 p {
     font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
 }
 
 
-
-
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*INDEX*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+.home {
 
+    display: grid;
+    grid-template-rows:650px 450px;
+}
 
+.hero {
+    background-color: darkorange;
+    margin: 0.5rem 0.5rem;
+}
+
+.categories ul {
+    display: grid;
+    grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
+    
+    margin: 0.5rem 0.5rem;
+    height: 95%;
+}
+
+.categories li {
+background-color: coral;
+margin: 0.5rem 0.5rem;
+}
+
+.categoryH {
+    text-align: center;
+    margin-top: 10%;
+    background-color: antiquewhite;
+}
+
+.cover {
+margin-left: 10%;
+margin-top: 10%;
+}
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
