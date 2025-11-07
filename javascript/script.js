@@ -2,13 +2,44 @@
                                                     /* UNIVERSAL*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+const thisPage = window.location.pathname.split("/").pop();
 
+const menuLinks = document.querySelectorAll(".menu a");
+
+menuLinks.forEach(link => {
+
+  if (link.getAttribute("href") === thisPage) {
+    link.classList.add("active");
+  }
+});
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*INDEX PAGE*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+const borrowButton = document.querySelector(".borrowButton");
 
+borrowButton.addEventListener("click", () => {
+  window.location.href = "../html/borrow.html";
+});
+
+const lendButton = document.querySelector(".lendBtn");
+
+lendButton.addEventListener("click", () => {
+  window.location.href = "../html/lend.html";
+});
+
+const buyButton = document.querySelector(".buyBtn");
+
+buyButton.addEventListener("click", () => {
+  window.location.href = "../html/buy.html";
+});
+
+const sellButton = document.querySelector(".sellBtn");
+
+sellButton.addEventListener("click", () => {
+  window.location.href = "../html/sell.html";
+});
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/

@@ -128,7 +128,11 @@ nav ul li a {
                     
                }  
                
-
+.menu a.active {
+  color: gold; 
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
 /*Fonts: 'Cinzel Decorative', 'IM Fell DW Pica SC', 'IM Fell DW Pica', 'Noticia Text'*/
 
@@ -188,11 +192,10 @@ max-height: 40rem;
 .home {
 
     display: grid;
-    grid-template-rows:auto 450px;
+    grid-template-rows:auto 28.125rem;
 }
 
 .hero {
-    background-color: darkorange;
     margin: 1rem 1rem;
     background-color: rgb(36, 31, 124);
 }
@@ -206,14 +209,14 @@ max-height: 40rem;
 }
 
 .categories li {
-background-color: coral;
+background-color:white;
 margin: 0.5rem 0.5rem;
 }
 
 .categoryH {
     text-align: center;
     margin-top: 10%;
-    background-color: antiquewhite;
+    background-color: gold;
 }
 
 .cover {
@@ -231,26 +234,33 @@ margin-top: 10%;
     text-align: right;
     margin: 1.5rem;
     font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
+    color: gold;
 }
 
-.borrowBtn{
+.borrowButton{
     grid-column: 2;
     grid-row: 1;
+    background-color: green;
+    margin: 1rem;
+    border-radius: 0.5rem;
 }
 
 .lendBtn{
     grid-column: 2;
     grid-row: 2;
+    background-color: green;
 }
 
 .buyBtn{
     grid-column: 2;
     grid-row: 3;
+    background-color: green;
 }
 
 .sellBtn{
     grid-column: 2;
     grid-row: 4;
+    background-color: green;
 }
 
 .books{
@@ -258,23 +268,27 @@ margin-top: 10%;
     grid-row: 4;
     margin: 1.5rem;
     font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
+    color: gold;
 }
 
-.borrowBtn, .lendBtn,.buyBtn, .sellBtn {
+.borrowButton, .lendBtn,.buyBtn, .sellBtn {
     margin: 1rem;
     border-radius: 0.5rem;
+    color: white;
 }
 
 .hero>h1 {
     font-size: 2.5rem;
     text-align: center;
     margin-bottom: 1.5rem;
+    color: rgb(255, 217, 190);
 }
 
 .hero>p {
     font-size: 1.5rem;
     text-align: center;
     margin-bottom: 5rem;
+    color: white;
 }
 
 
