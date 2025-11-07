@@ -113,6 +113,27 @@ p {
     margin: 1rem;
 }
 
+#trans {
+  background-color: transparent;
+
+}
+
+.actions>ul>li{
+    background-color: rgb(187, 255, 0);
+    margin: 1.5rem;
+    font-size: 2rem;
+}
+
+.dropdown {
+    text-align: center;
+    border-radius: 1rem;
+    font-size: 1rem;
+    width: 70%;
+    margin-left: 1rem;
+}
+
+
+
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*INDEX PAGE*/
@@ -121,7 +142,7 @@ p {
 .home {
 
     display: grid;
-    grid-template-rows:650px 450px;
+    grid-template-rows:auto 450px;
 }
 
 .hero {
@@ -151,6 +172,62 @@ margin: 0.5rem 0.5rem;
 .cover {
 margin-left: 10%;
 margin-top: 10%;
+}
+
+.heroButtons{
+    display: grid;
+}
+
+.want{
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
+    margin: 1.5rem;
+    font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
+}
+
+.borrowBtn{
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.lendBtn{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.buyBtn{
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.sellBtn{
+    grid-column: 2;
+    grid-row: 4;
+}
+
+.books{
+    grid-column: 3;
+    grid-row: 4;
+    margin: 1.5rem;
+    font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
+}
+
+.borrowBtn, .lendBtn,.buyBtn, .sellBtn {
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+.hero>h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.hero>p {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 5rem;
 }
 
 
@@ -193,24 +270,218 @@ margin-top: 10%;
 }
 
 .reviews{
-    grid-column: 1/2;
+    grid-column: 1/3;
     grid-row: 1/3;
     background-color: aqua;
     margin: 1rem;
 }
 
+.reviews>h1{
+    margin: 1.5rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
 .clubs{
-    grid-column: 2;
-    grid-row: 1;
+    grid-column: 3/4;
+    grid-row: 1/2;
     background-color: blue;
     margin: 1rem;
 }
 
 .threads{
-    grid-column: 2;
-    grid-row: 2;
+    grid-column: 3/4;
+    grid-row: 2/3;
     background-color: blueviolet;
     margin: 1rem;
+}
+
+.revImage{
+    width :100%; 
+    height:auto;
+    grid-column: 1/2;
+    grid-row: 1/4;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.revTitle{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin: 2rem;
+}
+
+.revStars{
+    grid-column: 3/4;
+    grid-row: 1/2;
+    display: flex;
+     margin-top: 2rem;
+}
+
+.revPara{
+    grid-column: 2/4;
+    grid-row: 2/4;
+    margin: 1rem;
+    margin: 2rem;
+}
+
+.reviews>ul>li{
+    background-color: blueviolet;
+    margin: 1.5rem;
+}
+.view{
+    text-align: right;
+}
+
+.reviewBox{
+    display: grid;
+}
+
+.clubBtn{
+
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 27%;
+  font-size: 1.5rem;
+
+}
+
+.clubBtn:hover {
+  background-color: #555;
+}
+
+.form-container {
+  display: none;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 30px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+form input, form textarea {
+  width: 90%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.joinButtons {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.listings>h2{
+
+text-align: center;
+margin: 2rem;
+text-decoration: overline;
+padding: 2rem;
+}
+
+.listing{
+
+display: grid;
+background-color: aquamarine;
+margin: 1rem;
+
+}
+
+.listImg{
+
+grid-column: 1/2;
+grid-row: 1/3;
+width: 75%;
+height: auto;
+margin-left: 1rem;
+background-color: aliceblue;
+}
+
+.listH3{
+
+grid-column: 2/4;
+grid-row: 1/2;
+background-color: aliceblue;
+font-size: 1rem;
+}
+
+.listPara{
+
+grid-column: 2/4;
+grid-row: 2/3;
+background-color: aliceblue;
+}
+
+.listMembers{
+
+grid-column: 1/2;
+grid-row: 3/4;
+text-align: center;
+
+}
+
+.joinBTn{
+
+grid-column: 4/5;
+grid-row: 2/3;
+  height: 2.5rem;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.joinBTn{
+
+/*margin-right: 2rem;*/
+
+}
+
+.listPara, .listH3{
+    margin-right: 1.5rem;
+}
+
+.threadH2{
+    text-align: center;
+    margin: 1rem;
+}
+
+.thread{
+    display: grid;
+      border: 0.1rem black solid;
+    margin: 0.5rem;
+}
+
+.threadTopic
+{
+grid-column: 1/3;
+grid-row: 1/2;
+}
+
+.threadP1{
+grid-column: 1/2;
+grid-row: 2/3;
+}
+
+.threadP2{
+grid-column: 2/3;
+grid-row: 2/3;
+}
+
+.threadBtn{
+grid-column: 3/4;
+grid-row: 1/3;
+width: 8rem;
+height: 2.5rem;
+justify-content: center;
+margin-top: 0.2rem;
+border-radius: 0.5rem;
 }
 
 

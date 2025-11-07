@@ -46,7 +46,26 @@
                                                         /*COMMUNITY*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+const openFormBtn = document.getElementById('openFormBtn');
+const clubForm = document.getElementById('clubForm');
+const cancelBtn = document.getElementById('cancelBtn');
 
+// Open the form
+openFormBtn.addEventListener('click', () => {
+  clubForm.style.display = 'block';
+});
+
+// Close the form when Cancel is clicked
+cancelBtn.addEventListener('click', () => {
+  clubForm.style.display = 'none';
+});
+
+// Optional: Handle form submission
+document.getElementById('clubFormContent').addEventListener('submit', (e) => {
+  e.preventDefault();
+  alert('Book Club Created Successfully!');
+  clubForm.style.display = 'none';
+});
 
 
 
