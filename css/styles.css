@@ -44,7 +44,7 @@ header {
         margin-right: 2rem;
       }
 
-.menu a {
+.menu a, footer a{
     color: bisque;
 }
  
