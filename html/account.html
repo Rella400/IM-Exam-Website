@@ -31,13 +31,13 @@
 
     <header>
         <nav>
-            <a href="../index.html">
-                <img src="" alt="Website Logo" />
+            <a class="icon" href="../index.html">
+                <img class="logo" src="../images/Logo.png" alt="Website Logo" />
             </a>
 
-            <form action="search">
-                <input type="text" placeholder="Search">
-                <button>Search Icon</button>
+            <form class="search" action="search">
+                <input type="text" placeholder="Search Books">
+                <button class="searchBtn">Search</button>
             </form>
 
             <ul class="menu">
@@ -54,16 +54,18 @@
 
     <main class="account">
 
-        <section>
-            <H2>PROFILE</H2>
-            <img src="mdn_logo.svg" alt="User Image" />
-            <p><b>NAME:</b> Kuhle Yengwa</p>
-            <p><b>ROLE:</b> Borrower</p>
+        <section class="profile">
+           <h2>PROFILE</h2>
+            <div class="profileContent">
+                <img class="profileImg" src="../images/wood.jpg" alt="User Image" />
+                <p class="profileP1"><b>NAME:</b> Kuhle Yengwa</p>
+                <p class="profileP2"><b>ROLE:</b> Borrower</p>
+            </div> 
         </section>
 
         <!--Underline/Seperation decoration-->
 
-        <section>
+        <section class="transaction">
 
             <h2>TRANSACTION HISTORY</h2>
 
@@ -102,7 +104,7 @@
 
         <!--Underline/Seperation decoration-->
 
-        <section>
+        <section class="settings">
             <h2>SETTINGS</h2>
             <p>Notifications</p> <!--Notifications Toggle-->
             <a href=""><p>Delivery Preferences</p></a>
