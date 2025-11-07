@@ -222,7 +222,8 @@ margin: 0.5rem 0.5rem;
 .cover {
 margin-left: 10%;
 margin-top: 10%;
-}
+}*
+
 
 .heroButtons{
     display: grid;

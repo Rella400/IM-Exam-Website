@@ -42,6 +42,38 @@ sellButton.addEventListener("click", () => {
 });
 
 
+/*BOOKS CATEGORIES SCROLL*/
+
+const categoryItems = document.querySelectorAll("#categoryList li");
+
+categoryItems.forEach(async (li) => {
+  const category = li.dataset.category;
+
+  // Construct Google Books API URL
+  // Use maxResults=1 to get one book cover per category
+  const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(category)}&maxResults=1`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data.items && data.items.length > 0) {
+      const book = data.items[0].volumeInfo;
+
+      // Replace img src with the book's thumbnail
+      const img = li.querySelector(".cover");
+      img.src = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
+
+      // Optionally replace category title with the fetched book title
+      const h2 = li.querySelector(".categoryH");
+      h2.textContent = /*book.title ||*/ category;
+    }
+  } catch (error) {
+    console.error(`Error fetching books for category "${category}":`, error);
+  }
+});
+
+
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                             /*BORROW*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
