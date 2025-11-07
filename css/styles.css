@@ -13,11 +13,16 @@
                          
                        }
 
+main, section{
+    border-radius: 2rem;
+    padding: 2rem;
+}
+
 
 body {
         width: 100%;
         height: auto;
-        background-color: aqua;
+        background-color: rgb(205, 144, 100);
         padding: 0px;
         border: 10px black solid;
         /*background-image: url('../images/wood.jpg');*/
@@ -89,9 +94,28 @@ p {
     font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
 }
 
+.borrow, .lend,.buy, .sell {
+
+    display: grid;
+    grid-template-columns:30% 70%;
+    height: 90vh;
+    margin-left: 1rem;
+}
+
+.actions{
+    background-color: aqua;
+    margin: 1rem;
+
+}
+
+.details{
+    background-color: blueviolet ;
+    margin: 1rem;
+}
+
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*INDEX*/
+                                                        /*INDEX PAGE*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .home {
@@ -102,7 +126,7 @@ p {
 
 .hero {
     background-color: darkorange;
-    margin: 0.5rem 0.5rem;
+    margin: 1rem 1rem;
 }
 
 .categories ul {
@@ -136,8 +160,6 @@ margin-top: 10%;
 
 
 
-
-
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                             /*LEND*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -166,7 +188,30 @@ margin-top: 10%;
                                                         /*COMMUNITY*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+.community{
+    display: grid;
+}
 
+.reviews{
+    grid-column: 1/2;
+    grid-row: 1/3;
+    background-color: aqua;
+    margin: 1rem;
+}
+
+.clubs{
+    grid-column: 2;
+    grid-row: 1;
+    background-color: blue;
+    margin: 1rem;
+}
+
+.threads{
+    grid-column: 2;
+    grid-row: 2;
+    background-color: blueviolet;
+    margin: 1rem;
+}
 
 
 
@@ -174,6 +219,15 @@ margin-top: 10%;
                                                         /*ACCOUNT*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+.account{
+    background-color: aqua;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 20rem;
+    margin-right: 20rem;
+    min-height: 80vh;
+    max-height: auto;
+}
 /*Profile*/
 
 
