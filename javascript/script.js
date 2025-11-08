@@ -2,7 +2,7 @@
                                                     /* UNIVERSAL*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
-const thisPage = window.location.pathname.split("/").pop();
+/*const thisPage = window.location.pathname.split("/").pop();
 
 const menuLinks = document.querySelectorAll(".menu a");
 
@@ -17,7 +17,7 @@ menuLinks.forEach(link => {
                                                         /*INDEX PAGE*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
-const borrowButton = document.querySelector(".borrowButton");
+/*const borrowButton = document.querySelector(".borrowButton");
 
 borrowButton.addEventListener("click", () => {
   window.location.href = "../html/borrow.html";
@@ -44,7 +44,7 @@ sellButton.addEventListener("click", () => {
 
 /*BOOKS CATEGORIES SCROLL*/
 
-const categoryItems = document.querySelectorAll("#categoryList li");
+/*const categoryItems = document.querySelectorAll("#categoryList li");
 
 categoryItems.forEach(async (li) => {
   const category = li.dataset.category;
@@ -66,7 +66,7 @@ categoryItems.forEach(async (li) => {
 
       // Optionally replace category title with the fetched book title
       const h2 = li.querySelector(".categoryH");
-      h2.textContent = /*book.title ||*/ category;
+      h2.textContent = /*book.title ||*/ /*category;
     }
   } catch (error) {
     console.error(`Error fetching books for category "${category}":`, error);
@@ -78,7 +78,7 @@ categoryItems.forEach(async (li) => {
                                                             /*BORROW*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
-const form = document.getElementById("searchForm");
+/*const form = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
 const filterType = document.getElementById("filterType");
 const resultsSection = document.getElementById("results");
@@ -172,7 +172,7 @@ function goToAction(title, targetPage) {
                                                         /*COMMUNITY*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
-const openFormBtn = document.getElementById('openFormBtn');
+/*const openFormBtn = document.getElementById('openFormBtn');
 const clubForm = document.getElementById('clubForm');
 const cancelBtn = document.getElementById('cancelBtn');
 
@@ -209,6 +209,7 @@ document.getElementById('clubFormContent').addEventListener('submit', (e) => {
 
 
 
+
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*REVIEWS*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -220,3 +221,169 @@ document.getElementById('clubFormContent').addEventListener('submit', (e) => {
                                                         /*ACCOUNT*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
+/* ---------------------------------------------------------------------------
+   UNIVERSAL
+--------------------------------------------------------------------------- */
+const thisPage = window.location.pathname.split("/").pop();
+const menuLinks = document.querySelectorAll(".menu a");
+
+menuLinks.forEach(link => {
+  if (link.getAttribute("href") === thisPage) {
+    link.classList.add("active");
+  }
+});
+
+/* ---------------------------------------------------------------------------
+   INDEX PAGE BUTTON NAVIGATION
+--------------------------------------------------------------------------- */
+function navigateButton(selector, targetPage) {
+  const button = document.querySelector(selector);
+  if (button) {
+    button.addEventListener("click", () => {
+      window.location.href = targetPage;
+    });
+  }
+}
+
+navigateButton(".borrowButton", "../html/borrow.html");
+navigateButton(".lendBtn", "../html/lend.html");
+navigateButton(".buyBtn", "../html/buy.html");
+navigateButton(".sellBtn", "../html/sell.html");
+
+/* ---------------------------------------------------------------------------
+   BOOK CATEGORIES SCROLL / GALLERY
+--------------------------------------------------------------------------- */
+const categoryItems = document.querySelectorAll("#categoryList li");
+
+categoryItems.forEach(async li => {
+  const category = li.dataset.category;
+  if (!category) return;
+
+  const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(category)}&maxResults=1`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data.items && data.items.length > 0) {
+      const book = data.items[0].volumeInfo;
+      const img = li.querySelector(".cover");
+      const h2 = li.querySelector(".categoryH");
+
+      if (img) {
+        img.src = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
+        img.alt = book.title || "Book cover";
+      }
+
+      if (h2) {
+        h2.textContent = category; // Keep category name consistent
+      }
+    }
+  } catch (error) {
+    console.error(`Error fetching books for category "${category}":`, error);
+  }
+});
+
+/* ---------------------------------------------------------------------------
+   BORROW / BUY PAGE SEARCH
+--------------------------------------------------------------------------- */
+const form = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const filterType = document.getElementById("filterType");
+const resultsSection = document.getElementById("results");
+
+// Safeguard: only run search if form exists
+if (form && searchInput && filterType && resultsSection) {
+  const currentPage = window.location.pathname.includes("buy") ? "buy" : "borrow";
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const query = searchInput.value.trim();
+    const filter = filterType.value;
+    if (!query) return;
+
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${filter}:${encodeURIComponent(query)}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      resultsSection.innerHTML = "";
+
+      if (!data.items) {
+        resultsSection.innerHTML = "<p>No books found.</p>";
+        return;
+      }
+
+      data.items.forEach(item => {
+        const book = item.volumeInfo;
+        const title = book.title || "No title available";
+        const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+        const description = book.description
+          ? book.description.substring(0, 150) + "..."
+          : "No description available.";
+        const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
+
+        const buttonText = currentPage === "buy" ? "Buy Now" : "Borrow Now";
+        const targetPage = currentPage === "buy" ? "buyPage.html" : "borrowPage.html";
+
+        const bookHTML = `
+          <div class="book">
+            <img src="${thumbnail}" alt="${title} cover">
+            <h3>${title}</h3>
+            <p><strong>Author:</strong> ${authors}</p>
+            <p>${description}</p>
+            <button class="actionBtn" data-title="${encodeURIComponent(title)}" data-target="${targetPage}">
+              ${buttonText}
+            </button>
+          </div>
+        `;
+
+        resultsSection.insertAdjacentHTML("beforeend", bookHTML);
+      });
+    } catch (error) {
+      console.error("Error fetching books:", error);
+      resultsSection.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+    }
+  });
+
+  // Handle all “Borrow/Buy Now” clicks safely
+  resultsSection.addEventListener("click", e => {
+    if (e.target.classList.contains("actionBtn")) {
+      const title = e.target.dataset.title;
+      const targetPage = e.target.dataset.target;
+      if (title && targetPage) {
+        window.location.href = `${targetPage}?book=${title}`;
+      }
+    }
+  });
+}
+
+/* ---------------------------------------------------------------------------
+   COMMUNITY PAGE (Book Club Form)
+--------------------------------------------------------------------------- */
+const openFormBtn = document.getElementById("openFormBtn");
+const clubForm = document.getElementById("clubForm");
+const cancelBtn = document.getElementById("cancelBtn");
+const clubFormContent = document.getElementById("clubFormContent");
+
+if (openFormBtn && clubForm && cancelBtn) {
+  // Open form
+  openFormBtn.addEventListener("click", () => {
+    clubForm.style.display = "block";
+  });
+
+  // Cancel form
+  cancelBtn.addEventListener("click", () => {
+    clubForm.style.display = "none";
+  });
+
+  // Handle submission
+  if (clubFormContent) {
+    clubFormContent.addEventListener("submit", e => {
+      e.preventDefault();
+      alert("Book Club Created Successfully!");
+      clubForm.style.display = "none";
+    });
+  }
+}

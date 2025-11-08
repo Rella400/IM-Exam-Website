@@ -1,103 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrow</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borrow</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Noticia+Text:wght@400;700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">  
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet"> 
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="../css/styles.css" />
-    <script src="../javascript/script.js" defer></script>
+  <!-- Styles & Scripts -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script src="../javascript/script.js" defer></script>
 </head>
 
-
-
 <body>
+  <header>
+    <nav>
+      <a class="icon" href="../index.html">
+        <img class="logo" src="../images/Logo.png" alt="Website Logo">
+      </a>
 
-    <header>
+      <ul class="menu">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="borrow.html">Borrow</a></li>
+        <li><a href="lend.html">Lend</a></li>
+        <li><a href="buy.html">Buy</a></li>
+        <li><a href="sell.html">Sell</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="account.html">Account</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <nav>
-            <a class="icon" href="../index.html">
-                <img class="logo" src="../images/Logo.png" alt="Website Logo" />
-            </a>
+  <main class="borrow">
+    <!-- Sidebar -->
+    <aside class="actions">
+      <ul>
+        <li class="role">Borrower</li>
+        <li><button class="dropdown">Search Books</button></li>
+        <li><button class="dropdown">Borrowed Books</button></li>
+        <li><button class="dropdown">Track Reading</button></li>
+        <li><a href="lend.html">Lender</a></li>
+        <li><a href="buy.html">Buyer</a></li>
+        <li><a href="sell.html">Seller</a></li>
+      </ul>
+    </aside>
 
+    <!-- Content Area -->
+    <section class="details">
+      <form class="search" id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search for books..." required>
+        <select id="filterType">
+          <option value="intitle">Title</option>
+          <option value="inauthor">Author</option>
+          <option value="subject">Genre</option>
+        </select>
+        <button type="submit" class="searchBtn">Search</button>
+      </form>
 
-            <ul class="menu">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="borrow.html">Borrow</a></li>
-                <li><a href="lend.html">Lend</a></li>
-                <li><a href="buy.html">Buy</a></li>
-                <li><a href="sell.html">Sell</a></li>
-                <li><a href="community.html">Community</a></li>
-                <li><a href="account.html">Account</a></li>
-            </ul>
-        </nav>
+      <section id="results" class="results"></section>
+    </section>
+  </main>
 
-    </header>
-
-    <main class="borrow">
-
-        <section class="actions">
-            <ul>
-                <li>Borrower</li>
-                <li id="trans"><button class="dropdown">Search Books</button></li>
-                <li id="trans"><button class="dropdown">Borrowed Books</button></li>
-                <li id="trans"><button class="dropdown">Track Reading</button></li>
-                <li ><a href="lend.html">Lender</a></li>
-                <li><a href="buy.html">Buyer</a></li>
-                <li><a href="sell.html">Seller</a></li>
-            </ul>
-        </section>
-
-        <section class="details">
-            <form class="search" id="searchForm">
-                <input type="text" id="searchInput" placeholder="Search for books..." required />
-
-                <select id="filterType">
-                    <option value="intitle">Title</option>
-                    <option value="inauthor">Author</option>
-                    <option value="subject">Genre</option>
-                </select>
-
-                <button type="submit" class="searchBtn">Search</button>
-            </form>
-
-            <section id="results" class="results"></section>
-
-        </section>
-
-
-
-    </main>
-
-    <footer>
-
-        <ul>
-                <li><a href="">About</a></li>
-                <li><a href="">Help</a></li>
-                <li><a href="">Terms</a></li>
-                <li><a href="">Contact</a></li>
-        </ul>
-
-    </footer>
-    
+  <footer>
+    <ul>
+      <li><a href="">About</a></li>
+      <li><a href="">Help</a></li>
+      <li><a href="">Terms</a></li>
+      <li><a href="">Contact</a></li>
+    </ul>
+  </footer>
 </body>
-
-
-
 </html>

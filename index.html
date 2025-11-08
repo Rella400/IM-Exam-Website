@@ -1,145 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Little Libraries | Home</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=IM+Fell+DW+Pica+SC&family=Cinzel+Decorative:wght@400;700;900&family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noticia+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="javascript/script.js" defer></script>
+  <!-- Script -->
+  <script src="javascript/script.js" defer></script>
 </head>
-
-
 
 <body>
 
-    <header>
-
-        <nav>
-            <a class="icon" href="index.html" >
-                <img class="logo" src="images/Logo.png" alt="Website Logo" />
-            </a>
-
-           
-            <ul class="menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="html/borrow.html">Borrow</a></li>
-                <li><a href="html/lend.html">Lend</a></li>
-                <li><a href="html/buy.html">Buy</a></li>
-                <li><a href="html/sell.html">Sell</a></li>
-                <li><a href="html/community.html">Community</a></li>
-                <li><a href="html/account.html">Account</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-    <main class="home">
-
-        <section class="hero">
-
-
-                <h1>Welcome to Little Libraries <br>– <br>Where Books Bring Us Together</h1>
-
-                <p>Browse, borrow, lend, or sell books. Join a community of passionate readers and keep track of your reading journey.</p>
-
-                <div class="heroButtons"><h2 class="want">I want to...</h2>
-
-                <button class="borrowButton"><b> BORROW </b></button>
-                <button class="lendBtn"><b>LEND</b></button>
-                <button class="buyBtn"><b>BUY</b></button>
-                <button class="sellBtn"><b>SELL</b></button>
-
-                <h2 class="books">...books.</h2></div>
-
-            </form>
-            <!-- Dropdown menu to choose pages-->
-        </section>
-
-       <!--<section class="categories">
-            <ul>
-                <li><a href= Page with book list and number of times borrowed> <img class= 'cover' width= 80%; src="images/wood.jpg" alt="Cover"> <h2 class=" categoryH">Most Borrowed Books</h2></a></li>
-                <li><a href= Page with book list and star rating and number of people rated><img class= 'cover' width= 80%; src="images/wood.jpg" alt="Cover"> <h2 class=" categoryH"> <h2 class=" categoryH">Top Rated Books</h2></a></li>
-                <li><a href= Page with book list ><img class= 'cover' width= 80%; src="images/wood.jpg" alt="Cover"> <h2 class=" categoryH"> <h2 class=" categoryH">Rare Finds</h2></a></li>
-                <li><a href= Page with book list and whatever><img class= 'cover' width= 80%; src="images/wood.jpg" alt="Cover"> <h2 class=" categoryH"><h2 class=" categoryH">Book Club Highlights</h2></a></li> 
-                <li><a href= Page with book list and publication date><img class= 'cover' width= 80%; src="images/wood.jpg" alt="Cover"> <h2 class=" categoryH"><h2 class=" categoryH">Newly Published Books</h2></a></li>
-                <li><a href= Page with book list ><img class= 'cover' width= 80%; src="images/wood.jpg" alt="Cover"> <h2 class=" categoryH"><h2 class=" categoryH">By South African Authors</h2></a></li> 
-            </ul>
-        </section>-->
-
-        <section class="categories">
-  <ul id="categoryList">
-    <li data-category="Fiction">
-      <a href="#">
-        <img class="cover" width="80%" src="images/wood.jpg" alt="Cover">
-        <h2 class="categoryH">Fiction</h2>
+  <header>
+    <nav>
+      <a class="icon" href="index.html">
+        <img class="logo" src="images/Logo.png" alt="Website Logo">
       </a>
-    </li>
-    <li data-category="Fantasy">
-      <a href="#">
-        <img class="cover" width="80%" src="images/wood.jpg" alt="Cover">
-        <h2 class="categoryH">Fantasy</h2>
-      </a>
-    </li>
-    <li data-category="Health & Wellness">
-      <a href="#">
-        <img class="cover" width="80%" src="images/wood.jpg" alt="Cover">
-        <h2 class="categoryH">Health & Wellness</h2>
-      </a>
-    </li>
-    <li data-category="Historical">
-      <a href="#">
-        <img class="cover" width="80%" src="images/wood.jpg" alt="Cover">
-        <h2 class="categoryH">Historical</h2>
-      </a>
-    </li>
-    <li data-category="Self-Help">
-      <a href="#">
-        <img class="cover" width="80%" src="images/wood.jpg" alt="Cover">
-        <h2 class="categoryH">Self-Help</h2>
-      </a>
-    </li>
-    <li data-category="South African Authors">
-      <a href="#">
-        <img class="cover" width="80%" src="images/wood.jpg" alt="Cover">
-        <h2 class="categoryH">By South African Authors</h2>
-      </a>
-    </li>
-  </ul>
-</section>
 
+      <ul class="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="html/borrow.html">Borrow</a></li>
+        <li><a href="html/lend.html">Lend</a></li>
+        <li><a href="html/buy.html">Buy</a></li>
+        <li><a href="html/sell.html">Sell</a></li>
+        <li><a href="html/community.html">Community</a></li>
+        <li><a href="html/account.html">Account</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    </main>
+  <main class="home">
+    <section class="hero">
+      <h1>Welcome to Little Libraries<br>–<br>Where Books Bring Us Together</h1>
+      <p>Browse, borrow, lend, or sell books. Join a community of passionate readers and keep track of your reading journey.</p>
 
-        <footer>
+      <div class="heroButtons">
+        <h2 class="want">I want to...</h2>
+        <button class="borrowButton"><b>BORROW</b></button>
+        <button class="lendBtn"><b>LEND</b></button>
+        <button class="buyBtn"><b>BUY</b></button>
+        <button class="sellBtn"><b>SELL</b></button>
+        <h2 class="books">...books.</h2>
+      </div>
+    </section>
 
-        <ul>
-                <li><a href="">About</a></li>
-                <li><a href="">Help</a></li>
-                <li><a href="">Terms</a></li>
-                <li><a href="">Contact</a></li>
-        </ul>
+    <section class="categories">
+      <ul id="categoryList">
+        <li data-category="Fiction">
+          <a href="html/bookCategories.html#fiction">
+            <img class="cover" src="images/wood.jpg" alt="Fiction Cover">
+            <h3 class="categoryH">Fiction</h3>
+          </a>
+        </li>
+        <li data-category="Fantasy">
+          <a href="html/bookCategories.html#fantasy">
+            <img class="cover" src="images/wood.jpg" alt="Fantasy Cover">
+            <h3 class="categoryH">Fantasy</h3>
+          </a>
+        </li>
+        <li data-category="Romance">
+          <a href="html/bookCategories.html#romance">
+            <img class="cover" src="images/wood.jpg" alt="Romance Cover">
+            <h3 class="categoryH">Romance</h3>
+          </a>
+        </li>
+        <li data-category="History">
+          <a href="html/bookCategories.html#history">
+            <img class="cover" src="images/wood.jpg" alt="Historical Cover">
+            <h3 class="categoryH">Historical</h3>
+          </a>
+        </li>
+        <li data-category="Children">
+          <a href="html/bookCategories.html#children">
+            <img class="cover" src="images/wood.jpg" alt="Children's Books Cover">
+            <h3 class="categoryH">Children's Books</h3>
+          </a>
+        </li>
+        <li data-category="South African Authors">
+          <a href="html/bookCategories.html#south-african-authors">
+            <img class="cover" src="images/wood.jpg" alt="SA Authors Cover">
+            <h3 class="categoryH">By South African Authors</h3>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
 
-    </footer>
+  <footer>
+    <ul>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </footer>
 
 </body>
-
-
-
 </html>

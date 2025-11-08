@@ -52,25 +52,42 @@
 
     <main class="sell">
 
-        <section class="actions">
-            <ul>
-                <li><a href="borrow.html">Borrower</a></li>
-                <li><a href="lend.html">Lender</a></li>
-                <li><a href="buy.html">Buyer</a></li>
-                <li>Seller</li>
-                <li id="trans"><button class="dropdown">Upload New Book </button></li>
-                <li id="trans"><button class="dropdown">Manage Inventory </button></li>
-                <li id="trans"><button class="dropdown">Payment History</button></li>
-            </ul>
-        </section>
+    <!-- Sidebar / Actions -->
+    <section class="actions">
+        <ul>
+            <li><a href="borrow.html">Borrower</a></li>
+            <li><a href="lend.html">Lender</a></li>
+            <li><a href="buy.html">Buyer</a></li>
+            <li class="active">Seller</li>
+            <li><button class="dropdown">Upload New Book</button></li>
+            <li><button class="dropdown">Manage Inventory</button></li>
+            <li><button class="dropdown">Payment History</button></li>
+        </ul>
+    </section>
 
-        <section class="details">
-            <!-- Active page/content-->
-        </section>
+    <!-- Main Content / Details -->
+    <section class="details">
+        <h2>Sell Your Books</h2>
 
+        <!-- Optional: Upload form -->
+        <form class="search" id="sellForm">
+            <input type="text" placeholder="Book Title" required>
+            <input type="text" placeholder="Author" required>
+            <select>
+                <option value="Fiction">Fiction</option>
+                <option value="Nonfiction">Nonfiction</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Self-Help">Self-Help</option>
+            </select>
+            <button class="searchBtn" type="submit">Upload</button>
+        </form>
 
+        <div class="results" id="sellResults">
+            <!-- Uploaded books will appear here -->
+        </div>
+    </section>
 
-    </main>
+</main>
 
             <footer>
 
