@@ -1,205 +1,3 @@
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                    /* UNIVERSAL*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*const thisPage = window.location.pathname.split("/").pop();
-
-const menuLinks = document.querySelectorAll(".menu a");
-
-menuLinks.forEach(link => {
-
-  if (link.getAttribute("href") === thisPage) {
-    link.classList.add("active");
-  }
-});
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*INDEX PAGE*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*const borrowButton = document.querySelector(".borrowButton");
-
-borrowButton.addEventListener("click", () => {
-  window.location.href = "../html/borrow.html";
-});
-
-const lendButton = document.querySelector(".lendBtn");
-
-lendButton.addEventListener("click", () => {
-  window.location.href = "../html/lend.html";
-});
-
-const buyButton = document.querySelector(".buyBtn");
-
-buyButton.addEventListener("click", () => {
-  window.location.href = "../html/buy.html";
-});
-
-const sellButton = document.querySelector(".sellBtn");
-
-sellButton.addEventListener("click", () => {
-  window.location.href = "../html/sell.html";
-});
-
-
-/*BOOKS CATEGORIES SCROLL*/
-
-/*const categoryItems = document.querySelectorAll("#categoryList li");
-
-categoryItems.forEach(async (li) => {
-  const category = li.dataset.category;
-
-  // Construct Google Books API URL
-  // Use maxResults=1 to get one book cover per category
-  const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(category)}&maxResults=1`;
-
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    if (data.items && data.items.length > 0) {
-      const book = data.items[0].volumeInfo;
-
-      // Replace img src with the book's thumbnail
-      const img = li.querySelector(".cover");
-      img.src = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
-
-      // Optionally replace category title with the fetched book title
-      const h2 = li.querySelector(".categoryH");
-      h2.textContent = /*book.title ||*/ /*category;
-    }
-  } catch (error) {
-    console.error(`Error fetching books for category "${category}":`, error);
-  }
-});
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*BORROW*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*const form = document.getElementById("searchForm");
-const searchInput = document.getElementById("searchInput");
-const filterType = document.getElementById("filterType");
-const resultsSection = document.getElementById("results");
-
-// Detect which page we are on
-const currentPage = window.location.pathname.includes("buy") ? "buy" : "borrow";
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const query = searchInput.value.trim();
-  const filter = filterType.value;
-
-  if (!query) return;
-
-  const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${filter}:${query}`;
-
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    resultsSection.innerHTML = "";
-
-    if (!data.items) {
-      resultsSection.innerHTML = "<p>No books found.</p>";
-      return;
-    }
-
-    data.items.forEach((item) => {
-      const book = item.volumeInfo;
-      const title = book.title || "No title available";
-      const authors = book.authors ? book.authors.join(", ") : "Unknown author";
-      const description = book.description
-        ? book.description.substring(0, 150) + "..."
-        : "No description available.";
-      const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
-
-      // Change button text and link based on current page
-      const buttonText = currentPage === "buy" ? "Buy Now" : "Borrow Now";
-      const targetPage = currentPage === "buy" ? "buyPage.html" : "borrowPage.html";
-
-      const bookHTML = `
-        <div class="book">
-          <img src="${thumbnail}" alt="${title} cover">
-          <h3>${title}</h3>
-          <p><strong>Author:</strong> ${authors}</p>
-          <p>${description}</p>
-          <button class="borrowBtn" onclick="goToAction('${encodeURIComponent(title)}', '${targetPage}')">
-            ${buttonText}
-          </button>
-        </div>
-      `;
-
-      resultsSection.innerHTML += bookHTML;
-    });
-  } catch (error) {
-    console.error("Error fetching books:", error);
-    resultsSection.innerHTML = "<p>Something went wrong. Please try again later.</p>";
-  }
-});
-
-function goToAction(title, targetPage) {
-  window.location.href = `${targetPage}?book=${title}`;
-}
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*LEND*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*BUY*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*SELL*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*COMMUNITY*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/*const openFormBtn = document.getElementById('openFormBtn');
-const clubForm = document.getElementById('clubForm');
-const cancelBtn = document.getElementById('cancelBtn');
-
-// Open the form
-openFormBtn.addEventListener('click', () => {
-  clubForm.style.display = 'block';
-});
-
-// Close the form when Cancel is clicked
-cancelBtn.addEventListener('click', () => {
-  clubForm.style.display = 'none';
-});
-
-// Optional: Handle form submission
-document.getElementById('clubFormContent').addEventListener('submit', (e) => {
-  e.preventDefault();
-  alert('Book Club Created Successfully!');
-  clubForm.style.display = 'none';
-});
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*ACCOUNT*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -287,77 +85,6 @@ categoryItems.forEach(async li => {
 /* ---------------------------------------------------------------------------
    BORROW / BUY PAGE SEARCH
 --------------------------------------------------------------------------- */
-/*const form = document.getElementById("searchForm");
-const searchInput = document.getElementById("searchInput");
-const filterType = document.getElementById("filterType");
-const resultsSection = document.getElementById("results");
-
-// Safeguard: only run search if form exists
-if (form && searchInput && filterType && resultsSection) {
-  const currentPage = window.location.pathname.includes("buy") ? "buy" : "borrow";
-
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-
-    const query = searchInput.value.trim();
-    const filter = filterType.value;
-    if (!query) return;
-
-    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${filter}:${encodeURIComponent(query)}`;
-
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      resultsSection.innerHTML = "";
-
-      if (!data.items) {
-        resultsSection.innerHTML = "<p>No books found.</p>";
-        return;
-      }
-
-      data.items.forEach(item => {
-        const book = item.volumeInfo;
-        const title = book.title || "No title available";
-        const authors = book.authors ? book.authors.join(", ") : "Unknown author";
-        const description = book.description
-          ? book.description.substring(0, 150) + "..."
-          : "No description available.";
-        const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
-
-        const buttonText = currentPage === "buy" ? "Buy Now" : "Borrow Now";
-        const targetPage = currentPage === "buy" ? "buyPage.html" : "borrowPage.html";
-
-        const bookHTML = `
-          <div class="book">
-            <img src="${thumbnail}" alt="${title} cover">
-            <h3>${title}</h3>
-            <p><strong>Author:</strong> ${authors}</p>
-            <p>${description}</p>
-            <button class="actionBtn" data-title="${encodeURIComponent(title)}" data-target="${targetPage}">
-              ${buttonText}
-            </button>
-          </div>
-        `;
-
-        resultsSection.insertAdjacentHTML("beforeend", bookHTML);
-      });
-    } catch (error) {
-      console.error("Error fetching books:", error);
-      resultsSection.innerHTML = "<p>Something went wrong. Please try again later.</p>";
-    }
-  });
-
-  // Handle all “Borrow/Buy Now” clicks safely
-  resultsSection.addEventListener("click", e => {
-    if (e.target.classList.contains("actionBtn")) {
-      const title = e.target.dataset.title;
-      const targetPage = e.target.dataset.target;
-      if (title && targetPage) {
-        window.location.href = `${targetPage}?book=${title}`;
-      }
-    }
-  });
-}*/
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -456,6 +183,134 @@ if (openFormBtn && clubForm && cancelBtn) {
   }
 }
 
+/*REVIEWS SECTION*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Convert ratings to stars
+  document.querySelectorAll(".revStars").forEach(starBox => {
+    const rating = parseFloat(starBox.dataset.rating);
+    const percent = Math.min((rating / 5) * 100, 100);
+    starBox.style.setProperty("--rating-percent", `${percent}%`);
+  });
+
+  // Handle "Read More" toggle
+  document.querySelectorAll(".readMore").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const para = e.target.closest(".revPara");
+      const moreText = para.querySelector(".moreText");
+
+      if (moreText.style.display === "inline") {
+        moreText.style.display = "none";
+        e.target.textContent = "...Read More";
+      } else {
+        moreText.style.display = "inline";
+        e.target.textContent = " Show Less";
+      }
+    });
+  });
+});
+
+
+/*CLUB LISTINGS*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("threadModal");
+  const closeModal = document.querySelector(".close");
+  const threadDetails = document.getElementById("threadDetails");
+
+  const threads = {
+    1: {
+      title: "Is 'To Kill a Mockingbird' still relevant today?",
+      comments: [
+        {
+          author: "Noluthando M.",
+          time: "2 hours ago",
+          text: "Absolutely. It still teaches empathy, justice, and moral courage in a divided world."
+        },
+        {
+          author: "Peter R.",
+          time: "1 hour ago",
+          text: "Yes, but younger readers find the language outdated. Maybe a modern adaptation could help."
+        },
+        {
+          author: "Lerato K.",
+          time: "30 minutes ago",
+          text: "I read it last year. It’s timeless — Harper Lee’s message is universal."
+        }
+      ]
+    },
+    2: {
+      title: "Best fantasy world-building in recent novels?",
+      comments: [
+        {
+          author: "Sammy B.",
+          time: "1 day ago",
+          text: "I’m amazed by the detail in Brandon Sanderson’s Stormlight Archive series!"
+        },
+        {
+          author: "Kabelo D.",
+          time: "20 hours ago",
+          text: "‘The Poppy War’ by R.F. Kuang has incredible world-building grounded in Chinese history."
+        },
+        {
+          author: "Tina P.",
+          time: "12 hours ago",
+          text: "Don’t forget ‘The Priory of the Orange Tree’ — a masterpiece of fantasy lore."
+        }
+      ]
+    },
+    3: {
+      title: "Books that changed your perspective on life?",
+      comments: [
+        {
+          author: "Leah M.",
+          time: "3 days ago",
+          text: "‘Man’s Search for Meaning’ by Viktor Frankl helped me find purpose after loss."
+        },
+        {
+          author: "James K.",
+          time: "2 days ago",
+          text: "‘The Alchemist’ made me realise the importance of following one’s dreams."
+        },
+        {
+          author: "Zinhle T.",
+          time: "1 day ago",
+          text: "‘Atomic Habits’ shifted how I view progress and discipline in daily life."
+        }
+      ]
+    }
+  };
+
+  // Open thread modal
+  document.querySelectorAll(".threadBtn").forEach(button => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.thread;
+      const thread = threads[id];
+
+      threadDetails.innerHTML = `
+        <div class="threadDiscussion">
+          <h3>${thread.title}</h3>
+          ${thread.comments.map(c => `
+            <div class="comment">
+              <p class="comment-author">${c.author}</p>
+              <p class="comment-time">${c.time}</p>
+              <p class="comment-text">${c.text}</p>
+            </div>
+          `).join("")}
+        </div>
+      `;
+
+      modal.style.display = "block";
+    });
+  });
+
+  // Close modal
+  closeModal.addEventListener("click", () => modal.style.display = "none");
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+});
 
 /*BORROW PAGE REDIRECT*/
 
@@ -835,3 +690,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+

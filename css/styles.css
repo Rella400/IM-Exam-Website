@@ -318,15 +318,14 @@ margin-top: 10%;
 }
 
 
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*BORROW*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------
+   UNIVERSAL PAGE STRUCTURE (Borrow / Lend / Buy / Sell)
+------------------------------------------------------------------- */
 
-
-/* =============================
-   BORROW PAGE
-============================= */
-.borrow {
+.borrow,
+.lend,
+.buy,
+.sell {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 2rem;
@@ -334,12 +333,13 @@ margin-top: 10%;
   background-color: rgb(255, 217, 190);
 }
 
-/* Sidebar */
+/* -------------------------
+   SIDEBAR / ACTIONS
+------------------------- */
 .actions {
   background-color: rgb(36, 31, 124);
   border-radius: 1rem;
   padding: 1rem;
-  /*color: bisque;*/
   height: fit-content;
   position: sticky;
   top: 2rem;
@@ -352,26 +352,27 @@ margin-top: 10%;
 }
 
 .actions li a,
-.actions li button {
+.actions li button,
+.actions li span {
   background: none;
   border: none;
-  /*color: bisque;*/
   text-align: left;
   cursor: pointer;
-  /*font-size: 1.5rem;*/
   font-family: 'IM Fell DW Pica', serif;
   transition: color 0.3s ease;
 }
 
 .actions li a {
-    color: greenyellow;
-    font-size: 1.5rem;
+  color: greenyellow;
+  font-size: 1.5rem;
 }
 
-.actions li button{
-    color: bisque;
-    font-size: 1rem;
-    background-color: rgb(40, 40, 205);
+.actions li button {
+  color: bisque;
+  font-size: 1rem;
+  background-color: rgb(40, 40, 205);
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.6rem;
 }
 
 .actions li a:hover,
@@ -379,19 +380,18 @@ margin-top: 10%;
   color: gold;
 }
 
-.actions .role {
+.actions .role,
+.actions li span.activeRole,
+.actions li.active {
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   color: gold;
   margin-bottom: 0.5rem;
 }
 
-.role {
-    font-size: 2rem;
-}
-
-
-/* Details & Search Area */
+/* -------------------------
+   MAIN CONTENT / DETAILS
+------------------------- */
 .details {
   background-color: white;
   border: 3px solid rgb(36, 31, 124);
@@ -401,7 +401,9 @@ margin-top: 10%;
   box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
 }
 
-/* Search Form */
+/* -------------------------
+   FORMS
+------------------------- */
 .search {
   display: flex;
   flex-wrap: wrap;
@@ -432,7 +434,9 @@ margin-top: 10%;
   background-color: rgb(255, 215, 100);
 }
 
-/* Search Results Grid */
+/* -------------------------
+   BOOK CARDS / RESULTS GRID
+------------------------- */
 .results {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -474,159 +478,129 @@ margin-top: 10%;
   background-color: rgb(55, 48, 180);
 }
 
-/* =============================
-   FOOTER FIX (Always at bottom)
-============================= */
-footer {
-  margin-top: auto;
+/* -------------------------------------------------------------------
+   BORROW REDIRECT PAGE
+------------------------------------------------------------------- */
+.borrowMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*BORROW REDIRECT PAGE*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
+.bookDetails {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 100%;
+}
 
-/*body {
-      font-family: 'Noticia Text', serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
+.bookDetails img {
+  width: 200px;
+  border-radius: 5px;
+}
 
-    header, footer {
-      background-color: #333;
-      color: #fff;
-      padding: 1rem;
-    }
+.bookInfo {
+  flex: 1;
+}
 
-    header img.logo {
-      height: 50px;
-    }*/
+.bookInfo h2 {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
 
-    .borrowMain {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
-    }
+.bookInfo p {
+  margin-bottom: 0.5rem;
+}
 
-    .bookDetails {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 900px;
-      width: 100%;
-    }
+form.borrowForm {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-    .bookDetails img {
-      width: 200px;
-      height: auto;
-      border-radius: 5px;
-    }
+form.borrowForm label {
+  font-weight: bold;
+}
 
-    .bookInfo {
-      flex: 1;
-    }
+form.borrowForm input,
+form.borrowForm select,
+form.borrowForm button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 
-    .bookInfo h2 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
+form.borrowForm button {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-    .bookInfo p {
-      margin-bottom: 0.5rem;
-    }
+form.borrowForm button:hover {
+  background-color: #555;
+}
 
-    form.borrowForm {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 900px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    form.borrowForm label {
-      font-weight: bold;
-    }
-
-    form.borrowForm input, form.borrowForm select, form.borrowForm button {
-      padding: 0.5rem;
-      font-size: 1rem;
-      width: 100%;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    form.borrowForm button {
-      background-color: #333;
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    form.borrowForm button:hover {
-      background-color: #555;
-    }
-
-
-/* ========== HOME LAYOUT ========== */
+/* -------------------------------------------------------------------
+   HOME PAGE
+------------------------------------------------------------------- */
 .home {
   display: grid;
   grid-template-rows: auto 28.125rem;
 }
 
-/* ========== HERO SECTION ========== */
+/* HERO SECTION */
 .hero {
   margin: 1rem;
   background-color: rgb(36, 31, 124);
+  padding: 2rem 0;
 }
 
 .hero > h1 {
   font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 1.5rem;
   color: rgb(255, 217, 190);
+  margin-bottom: 1.5rem;
 }
 
 .hero > p {
   font-size: 1.5rem;
   text-align: center;
-  margin-bottom: 5rem;
   color: white;
+  margin-bottom: 5rem;
 }
 
-/* ========== HERO BUTTONS ========== */
+/* HERO BUTTONS */
 .heroButtons {
   display: grid;
 }
 
-.want {
-  grid-column: 1;
-  grid-row: 1;
-  text-align: right;
-  margin: 1.5rem;
-  font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
-  color: gold;
-}
-
+.want,
 .books {
-  grid-column: 3;
-  grid-row: 4;
-  margin: 1.5rem;
   font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
   color: gold;
+  margin: 1.5rem;
 }
 
-/* Unified button styling */
+.want {
+  text-align: right;
+}
+
 .borrowButton,
 .lendBtn,
 .buyBtn,
@@ -638,9 +612,9 @@ footer {
   padding: 0.6rem 1.2rem;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Optional hover effect */
 .borrowButton:hover,
 .lendBtn:hover,
 .buyBtn:hover,
@@ -648,12 +622,13 @@ footer {
   background-color: darkgreen;
 }
 
-/* ========== CATEGORIES SECTION ========== */
+/* -------------------------------------------------------------------
+   CATEGORIES SECTION
+------------------------------------------------------------------- */
 .categories ul {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   margin: 0.5rem;
-  height: 95%;
   list-style: none;
   padding: 0;
 }
@@ -672,7 +647,6 @@ footer {
 
 .categoryH {
   text-align: center;
-  margin-top: 10%;
   background-color: gold;
   padding: 0.3rem 0;
   color: black;
@@ -686,527 +660,16 @@ footer {
   border-radius: 4px;
 }
 
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*LEND*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-/* =============================
-   LEND PAGE (similar to borrow)
-============================= */
-.lend {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2rem;
-  padding: 2rem;
-  background-color: rgb(255, 217, 190);
-}
-
-/* Sidebar */
-.actions {
-  background-color: rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  /*color: bisque;**/
-  height: fit-content;
-  position: sticky;
-  top: 2rem;
-}
-
-.actions ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.actions li a,
-.actions li button,
-.actions li span {
-  background: none;
-  border: none;
-  /*color: bisque;*/
-  text-align: left;
-  cursor: pointer;
-  /*font-size: 1.5rem;*/
-  font-family: 'IM Fell DW Pica', serif;
-  transition: color 0.3s ease;
-}
-
-/* Active page highlight */
-.actions li span.activeRole {
-  color: gold;
-  font-weight: bold;
-}
-
-.actions li a:hover,
-.actions li button:hover {
-  color: gold;
-}
-
-/* Details section */
-.details {
-  background-color: white;
-  border: 3px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 2rem;
-  min-height: 70vh;
-  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
-}
-
-/* Footer at bottom */
+/* -------------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------------- */
 footer {
   margin-top: auto;
 }
 
-/* ----- Lend Page Styling ----- */
-
-.add-book-section, .book-list-section {
-  background: #fff5d1; /* soft gold theme tone */
-  padding: 1rem 1.5rem;
-  margin-top: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.add-book-section h3, 
-.book-list-section h3 {
-  color: #b8860b; /* gold-like text */
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
-}
-
-#addBookForm {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-}
-
-#addBookForm input, 
-#addBookForm select {
-  flex: 1 1 200px;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-#addBookForm button {
-  background-color: #b8860b;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-#addBookForm button:hover {
-  background-color: #d4af37;
-}
-
-#bookList {
-  list-style: none;
-  margin-top: 1rem;
-  padding: 0;
-}
-
-#bookList li {
-  background: white;
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.6rem;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-left: 6px solid #b8860b;
-}
-
-.book-info {
-  flex: 1;
-}
-
-.book-status {
-  font-weight: bold;
-  color: #555;
-  font-size: 0.95rem;
-  background: #f9e79f;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-}
-
-.book-status.borrowed { background: #f5b7b1; }
-.book-status.returned { background: #abebc6; }
-.book-status.transit { background: #aed6f1; }
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*BUY*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /* =============================
-   BUY PAGE
-============================= */
-.buy {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2rem;
-  padding: 2rem;
-  background-color: rgb(255, 217, 190);
-}
-
-/* Sidebar */
-.buy .actions {
-  background-color: rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  /*color: bisque;*/
-  height: fit-content;
-  position: sticky;
-  top: 2rem;
-}
-
-.buy .actions ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.buy .actions li a,
-.buy .actions li button {
-  background: none;
-  border: none;
-  /*color: bisque;*/
-  text-align: left;
-  cursor: pointer;
-  /*font-size: 1.5rem;*/
-  font-family: 'IM Fell DW Pica', serif;
-  transition: color 0.3s ease;
-}
-
-.buy .actions li a:hover,
-.buy .actions li button:hover {
-  color: gold;
-}
-
-.buy .actions .role {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: gold;
-  margin-bottom: 0.5rem;
-}
-
-/* Details & Search Area */
-.buy .details {
-  background-color: white;
-  border: 3px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 2rem;
-  min-height: 70vh;
-  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
-}
-
-/* Search Form */
-.buy .search {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-}
-
-.buy .search input,
-.buy .search select {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid rgb(36, 31, 124);
-  font-family: 'Noticia Text', serif;
-}
-
-.buy .searchBtn {
-  background-color: gold;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.buy .searchBtn:hover {
-  background-color: rgb(255, 215, 100);
-}
-
-/* Search Results Grid */
-.buy .results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.buy .book {
-  border: 2px solid rgb(36, 31, 124);
-  border-radius: 0.8rem;
-  padding: 1rem;
-  background-color: bisque;
-  text-align: center;
-}
-
-.buy .book img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.buy .book h3 {
-  color: rgb(36, 31, 124);
-  margin-top: 1rem;
-}
-
-.buy .borrowBtn {
-  background-color: rgb(36, 31, 124);
-  color: gold;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.buy .borrowBtn:hover {
-  background-color: rgb(55, 48, 180);
-}
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                            /*SELL*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-.sell {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2rem;
-  padding: 2rem;
-  background-color: rgb(255, 217, 190);
-}
-
-/* Sidebar */
-.sell .actions {
-  background-color: rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  /*color: bisque;*/
-  height: fit-content;
-  position: sticky;
-  top: 2rem;
-}
-
-.sell .actions ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.sell .actions li a,
-.sell .actions li button {
-  background: none;
-  border: none;
-  /*color: bisque;*/
-  text-align: left;
-  cursor: pointer;
-  /*font-size: 1.5rem;*/
-  font-family: 'IM Fell DW Pica', serif;
-  transition: color 0.3s ease;
-}
-
-.sell .actions li a:hover,
-.sell .actions li button:hover {
-  color: gold;
-}
-
-.sell .actions li.active {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: gold;
-}
-
-/* Details section */
-.sell .details {
-  background-color: white;
-  border: 3px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  min-height: 70vh;
-  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
-}
-
-/* Search / Upload Form */
-.sell .search {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-}
-
-.sell .search input,
-.sell .search select {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid rgb(36, 31, 124);
-  font-family: 'Noticia Text', serif;
-}
-
-.sell .searchBtn {
-  background-color: gold;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.sell .searchBtn:hover {
-  background-color: rgb(255, 215, 100);
-}
-
-/* Uploaded books results grid */
-.sell .results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.sell .book {
-  border: 2px solid rgb(36, 31, 124);
-  border-radius: 0.8rem;
-  padding: 1rem;
-  background-color: bisque;
-  text-align: center;
-}
-
-.sell .book img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.sell .book h3 {
-  color: rgb(36, 31, 124);
-  margin-top: 1rem;
-}
-
-/* Footer */
-footer {
-  margin-top: auto;
-}
-
-/* ----- SELL PAGE STYLING ----- */
-
-.upload-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  background: #fff5d1; /* soft gold tone */
-  padding: 1.5rem;
-  margin-top: 1rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.upload-form input,
-.upload-form select {
-  flex: 1 1 200px;
-  padding: 0.7rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-}
-
-.uploadBtn {
-  background-color: #b8860b;
-  color: white;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.uploadBtn:hover {
-  background-color: #d4af37;
-}
-
-.results {
-  margin-top: 2rem;
-  background: #fffbea;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
-}
-
-.results h3 {
-  color: #b8860b;
-  margin-bottom: 1rem;
-}
-
-#bookList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-#bookList li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  border-left: 5px solid #b8860b;
-  padding: 0.8rem 1rem;
-  margin-bottom: 0.6rem;
-  border-radius: 8px;
-}
-
-.book-info {
-  flex: 1;
-}
-
-.book-price {
-  font-weight: bold;
-  color: #444;
-}
-
-.book-condition {
-  font-style: italic;
-  font-size: 0.9rem;
-  color: #777;
-}
-
-.delete-btn {
-  background: none;
-  border: 1px solid #b8860b;
-  color: #b8860b;
-  padding: 0.4rem 0.7rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.delete-btn:hover {
-  background: #b8860b;
-  color: white;
-}
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*COMMUNITY*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-/* =============================
-   COMMUNITY PAGE
+   GENERAL COMMUNITY LAYOUT
 ============================= */
 .community {
   display: grid;
@@ -1220,28 +683,29 @@ footer {
 /* =============================
    BOOK REVIEWS
 ============================= */
-.reviews h1, .reviews h3 {
+.reviews h1,
+.reviews h3 {
   color: rgb(36, 31, 124);
   margin-bottom: 1rem;
 }
 
 .reviews ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  padding: 0;
   list-style: none;
+  padding: 0;
 }
 
 .reviewBox {
   background-color: bisque;
   border: 2px solid rgb(36, 31, 124);
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 1.2rem;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -1252,46 +716,58 @@ footer {
 
 .revImage {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 0.5rem;
-  margin-bottom: 0.8rem;
+  border-radius: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .revTitle {
   color: rgb(36, 31, 124);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
+  font-weight: bold;
 }
 
+/* --- STAR RATING SYSTEM --- */
 .revStars {
   display: flex;
+  justify-content: center;
   gap: 0.2rem;
-  margin-bottom: 0.5rem;
-  padding: 0;
-  list-style: none;
+  margin-bottom: 0.6rem;
+  font-size: 1.3rem;
 }
 
-.revStars li img {
-  width: 20px;
-  height: 20px;
+.revStars::before {
+  content: "★★★★★";
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, gold calc(var(--rating-percent, 0%)), #ccc calc(var(--rating-percent, 0%)));
+  -webkit-background-clip: text;
+  background-clip: border-box;
+  -webkit-text-fill-color: transparent;
 }
 
+/* --- REVIEW TEXT --- */
 .revPara {
   font-size: 0.95rem;
   color: rgb(36, 31, 124);
 }
 
-.revPara a {
+.revPara .moreText {
+  display: none;
+}
+
+.revPara a.readMore {
   color: gold;
   text-decoration: none;
   font-weight: bold;
 }
 
-.revPara a:hover {
+.revPara a.readMore:hover {
   text-decoration: underline;
 }
 
+/* View more link */
 .reviews .view h3 {
   color: rgb(36, 31, 124);
   text-align: right;
@@ -1308,85 +784,72 @@ footer {
    BOOK CLUBS
 ============================= */
 .clubs {
-  background-color: white;
+  background: #fffaf0;
   border: 3px solid rgb(36, 31, 124);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
 }
 
+/* Create Button */
 .clubBtn {
-  background-color: rgb(36, 31, 124);
-  color: gold;
+  background-color: #b8860b;
+  color: white;
+  padding: 0.8rem 1.5rem;
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.7rem 1.5rem;
-  margin-bottom: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
+  margin-bottom: 1.5rem;
 }
 
 .clubBtn:hover {
-  background-color: rgb(55, 48, 180);
+  background-color: #d4af37;
 }
 
-/* Club Form */
+/* Club Creation Form */
 .form-container {
   display: none;
-  background-color: bisque;
-  border: 2px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.form-container input,
-.form-container textarea {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border: 2px solid rgb(36, 31, 124);
-  border-radius: 0.5rem;
-  font-family: 'Noticia Text', serif;
-}
-
-.form-container h3 {
-  color: rgb(36, 31, 124);
-  margin-bottom: 1rem;
-}
-
-.joinButtons {
+#clubFormContent {
+  background: #fffbea;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: flex-end;
 }
 
-.joinButtons button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+#clubFormContent input, 
+#clubFormContent textarea {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+#clubFormContent button {
+  background-color: #b8860b;
+  color: white;
   border: none;
+  padding: 0.7rem;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
 }
 
-.joinButtons button[type="submit"] {
-  background-color: rgb(36, 31, 124);
-  color: gold;
-}
-
-.joinButtons button[type="submit"]:hover {
-  background-color: rgb(55, 48, 180);
-}
-
-.joinButtons button#cancelBtn {
-  background-color: gold;
-  color: rgb(36, 31, 124);
-}
-
-.joinButtons button#cancelBtn:hover {
-  background-color: rgb(255, 215, 100);
+#clubFormContent button:hover {
+  background-color: #d4af37;
 }
 
 /* Club Listings */
@@ -1420,24 +883,18 @@ footer {
   margin-bottom: 0.5rem;
 }
 
-.listH3 {
-  color: rgb(36, 31, 124);
-  margin-bottom: 0.5rem;
-}
-
-.listPara {
-  font-size: 0.9rem;
+.listH3,
+.listPara,
+.listMembers {
   color: rgb(36, 31, 124);
   margin-bottom: 0.5rem;
 }
 
 .listMembers {
   font-weight: bold;
-  color: rgb(36, 31, 124);
-  margin-bottom: 0.5rem;
 }
 
-.joinBTn {
+.joinBtn {
   background-color: rgb(36, 31, 124);
   color: gold;
   border: none;
@@ -1448,7 +905,7 @@ footer {
   transition: background-color 0.3s ease;
 }
 
-.joinBTn:hover {
+.joinBtn:hover {
   background-color: rgb(55, 48, 180);
 }
 
@@ -1456,53 +913,137 @@ footer {
    DISCUSSION THREADS
 ============================= */
 .threads {
-  background-color: white;
-  border: 3px solid rgb(36, 31, 124);
-  border-radius: 1rem;
+  background: #fffbea;
   padding: 2rem;
-  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+  border-radius: 12px;
+  margin-top: 2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .threadH2 {
-  color: rgb(36, 31, 124);
-  margin-bottom: 1rem;
+  font-family: 'Cinzel Decorative', serif;
+  color: #b8860b;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
 }
 
 .thread {
-  background-color: bisque;
-  border: 2px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  background: white;
+  border-left: 5px solid #b8860b;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.thread:hover {
+  transform: scale(1.02);
 }
 
 .threadTopic {
   font-weight: bold;
-  color: rgb(36, 31, 124);
+  color: #333;
 }
 
-.threadP1,
-.threadP2 {
+.threadP1 {
   text-align: center;
-  color: rgb(36, 31, 124);
+  color: #666;
+}
+
+.threadP2 {
+  text-align: right;
+  color: #999;
 }
 
 .threadBtn {
-  background-color: rgb(36, 31, 124);
-  color: gold;
+  background-color: #b8860b;
+  color: white;
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
+  margin-left: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .threadBtn:hover {
-  background-color: rgb(55, 48, 180);
+  background-color: #d4af37;
+}
+
+/* ===== MODAL (THREAD DISCUSSION) ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  padding-top: 80px;
+  left: 0; top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fffdfa;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 85%;
+  max-width: 700px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.close {
+  color: #b8860b;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #d4af37;
+}
+
+/* Discussion Thread Content */
+.threadDiscussion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.threadDiscussion h3 {
+  color: #b8860b;
+}
+
+.comment {
+  background: white;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #b8860b;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.comment-author {
+  font-weight: bold;
+  color: #333;
+}
+
+.comment-time {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.comment-text {
+  margin-top: 0.4rem;
+  color: #444;
 }
 
 /* =============================
@@ -1537,80 +1078,12 @@ footer ul li a:hover {
 
 
 
-
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*ACCOUNT*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-/*ELEMENTS*/
 
-/*table {
-        table-layout: fixed;
-        width: 90%;
-        margin: 10px auto;
-        border: 2px black solid;
-        border-collapse: collapse;
-      }
-
-th, td {
-         padding: 0.3em;
-         border: 1px black solid;
-         text-align: left;
-         vertical-align: top;
-       }
-
-/*CLASSES*/
-
-/*.account{
-    background-color: aqua;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 20rem;
-    margin-right: 20rem;
-    min-width: 80vh;
-    max-height: auto;
-}
-/*Profile*/
-
-/*.account h2{
-    background-color: aquamarine;
-    display: inline-block;
-    margin-bottom: 2rem;
-}
-
-
-.profileContent{
-
-display: grid;
-background-color: aliceblue;
-
-}
-
-.profileImg{
-    grid-column: 1/2;
-    grid-row: 1/7;
-    width: 100%;
-    height: auto;
-}
-
-
-.profileP1{
-    grid-column: 2/3;
-    grid-row: 2/3;
-    margin-right: 10rem;
-    margin-left: 5rem;
-    font-size: 1.5rem;
-}
-
-.profileP2{
-    grid-column: 2/3;
-    grid-row: 4/5;
-     margin-left: 5rem;
-      font-size: 1.5rem;
-}
-
- /*IDs*/
 
 /* ================================
    TABLE STYLES
@@ -1697,35 +1170,39 @@ td {
 
 
 
-/* === Category Page Layout === */
+/* === CATEGORY PAGE LAYOUT === */
 .categoryPage {
   padding: 2rem;
-  background-color: #fafafa;
-  font-family: 'Poppins', sans-serif;
+  background-color: rgb(255, 217, 190); /* soft peach */
+  font-family: 'IM Fell DW Pica', serif;
   color: #333;
 }
 
-/* === Page Header === */
+/* === PAGE HEADER === */
 .categoriesH1 {
   text-align: center;
-  color: #222;
-  margin-bottom: 2rem;
+  color: rgb(36, 31, 124); /* deep blue */
+  font-family: 'Cinzel Decorative', cursive;
   font-size: 2rem;
   font-weight: 600;
+  margin-bottom: 2rem;
 }
 
-/* === Each Category Section === */
+/* === EACH CATEGORY SECTION === */
 .categoryX {
-  margin-bottom: 3rem;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
 }
 
-/* === Category Titles === */
+/* === CATEGORY TITLES === */
 .categoryTitle {
   display: inline-block;
   background-color: #f9d71c; /* gold accent */
-  color: #222;
+  color: rgb(36, 31, 124);
   padding: 0.4rem 1.2rem;
   border-radius: 1rem;
   font-size: 1.4rem;
@@ -1733,38 +1210,42 @@ td {
   margin-bottom: 1rem;
 }
 
-/* === Book Grid === */
+/* === BOOK GRID === */
 .categoryGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
   margin-top: 1rem;
-  min-height: 100px;
-  justify-content: center;
+  justify-items: center;
 }
 
-/* === Individual Book Cards === */
+/* === INDIVIDUAL BOOK CARDS === */
 .categoryDetails {
-  flex: 1 1 180px;
-  max-width: 200px;
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
 }
 
 .categoryDetails:hover {
   transform: scale(1.05);
 }
 
-/* === Book Images === */
-.categoryBook {
+/* === BOOK IMAGES === */
+.categoryBook,
+.categoryGrid img {
   width: 100%;
-  height: 260px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 0.6rem;
+  border-radius: 0.5rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-/* === Book Titles === */
+.categoryBook:hover {
+  transform: scale(1.05);
+}
+
+/* === BOOK TITLES === */
 .bookTitle {
   margin-top: 0.6rem;
   font-size: 1rem;
@@ -1773,21 +1254,21 @@ td {
   line-height: 1.3;
 }
 
-/* === View More Link/Button === */
+/* === VIEW MORE LINKS / BUTTONS === */
 .viewMore {
   display: inline-block;
-  margin-top: 1rem;
-  color: #007bff;
-  font-weight: 500;
+  margin-top: 0.5rem;
+  color: gold;
+  font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .viewMore:hover {
+  color: rgb(36, 31, 124);
   text-decoration: underline;
-  color: #0056b3;
 }
-
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*REVIEWS*/
@@ -1985,68 +1466,329 @@ footer a:hover {
   }
 }
 
-   /*CATEGORIES PAGE*/
+   /*LEND/SELL CSS*/
 
 
-   /* CATEGORY PAGE */
-.categoryPage {
-  padding: 2rem;
-  background-color: rgb(255, 217, 190);
-  font-family: 'IM Fell DW Pica', serif;
+   /* --------------------------------------------------
+   GENERAL STYLING
+-------------------------------------------------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  color: #333;
 }
 
-.categoriesH1 {
-  text-align: center;
-  color: rgb(36, 31, 124);
-  font-family: 'Cinzel Decorative', cursive;
-  margin-bottom: 2rem;
+section.details {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
-.categoryX {
-  margin-bottom: 2rem;
-  background-color: white;
-  border: 3px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+/* --------------------------------------------------
+   HEADINGS
+-------------------------------------------------- */
+section.details h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #222;
 }
 
-.categoryTitle {
-  color: rgb(36, 31, 124);
-  margin-bottom: 1rem;
+section.details h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #444;
 }
 
-.categoryGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+/* --------------------------------------------------
+   PARAGRAPHS
+-------------------------------------------------- */
+section.details p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-.categoryGrid img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 0.5rem;
+/* --------------------------------------------------
+   ADD BOOK FORM
+-------------------------------------------------- */
+.add-book-section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+#addBookForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+#addBookForm input,
+#addBookForm select {
+  flex: 1 1 200px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#addBookForm input:focus,
+#addBookForm select:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 5px rgba(0, 119, 204, 0.3);
+}
+
+#addBookForm button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: background-color 0.2s;
 }
 
-.categoryGrid img:hover {
-  transform: scale(1.05);
+#addBookForm button:hover {
+  background-color: #005fa3;
 }
 
-.viewMore {
-  display: inline-block;
-  margin-top: 0.5rem;
-  color: gold;
-  cursor: pointer;
+/* --------------------------------------------------
+   BOOK LIST SECTION
+-------------------------------------------------- */
+.book-list-section {
+  padding: 20px;
+  background-color: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.book-list-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.book-list-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #0077cc;
+  border-radius: 6px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.book-list-section li:hover {
+  background-color: #f1faff;
+  transform: translateY(-2px);
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-status {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
   font-weight: bold;
-  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
 }
 
-.viewMore:hover {
-  color: rgb(36, 31, 124);
+.book-status.available { background-color: #d4edda; color: #155724; }
+.book-status.borrowed { background-color: #fff3cd; color: #856404; }
+.book-status.returned { background-color: #d1ecf1; color: #0c5460; }
+.book-status.in-transit { background-color: #f8d7da; color: #721c24; }
+
+/* --------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------- */
+@media (max-width: 600px) {
+  #addBookForm {
+    flex-direction: column;
+  }
+
+  .book-list-section li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-status {
+    margin-top: 8px;
+  }
 }
+
+
+/* --------------------------
+   General Section Styling
+--------------------------- */
+.details {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.details h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.details p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* --------------------------
+   Upload Form Styling
+--------------------------- */
+.upload-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.upload-form input,
+.upload-form select {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.upload-form input:focus,
+.upload-form select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+.uploadBtn {
+  grid-column: 1 / -1; /* Full width button */
+  padding: 12px 0;
+  background-color: #4a90e2;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.uploadBtn:hover {
+  background-color: #357ab8;
+  transform: translateY(-2px);
+}
+
+/* --------------------------
+   Uploaded Books Styling
+--------------------------- */
+.results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+#bookList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#bookList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  transition: box-shadow 0.3s;
+}
+
+#bookList li:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-info strong {
+  font-size: 1.1rem;
+  margin-bottom: 3px;
+  color: #222;
+}
+
+.book-info em,
+.book-info span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.book-status {
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.book-status.new {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.book-status.used-good {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.book-status.used-fair {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .upload-form {
+    grid-template-columns: 1fr;
+  }
+
+  #bookList li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-status {
+    margin-top: 8px;
+  }
+}
+
 
 
 
