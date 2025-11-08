@@ -3,196 +3,6 @@
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-/*ELEMENTS*/
-
-/**, *::before, *::after {
-
-                         box-sizing: border-box;
-                         margin: 0;
-                         padding: 0;
-                         font-family: 'Noticia Text', 'Courier New', Courier, monospace;
-                         list-style: none;
-                         text-decoration: none;
-                         
-                       }
-
-main, section{
-    border-radius: 2rem;
-    padding: 2rem;
-}
-
-
-body {
-        width: 100%;
-        height: auto;
-        background-color: rgb(255, 217, 190);
-        padding: 0px;
-        border: 10px black solid;
-        /*background-image: url('../images/wood.jpg');*/
-        /*background-attachment: fixed;*/
-    /* }
-
-/*header {
-            background-color: rgb(36, 31, 124);
-            opacity: 0.8;
-            width: 100%;
-            height: auto;
-            margin: 0;
-       }
-
-footer ul {
-            display: flex;
-            justify-content: space-evenly;
-            /*gap: 5%;*/
-           /* padding: 0.5rem;
-            background-color: rgb(36, 31, 124);
-            opacity: 0.8;
-            width: 100%;
-            height: auto;
-            margin: 0;
-          }
-
-p {
-    line-height: 1.5;
-  }
-
-
-button, input, select, textarea {
-                                    font-family: inherit;
-                                    font-size: 100%;
-                                    padding: 0.5rem;
-                                }
-
-
-textarea {
-            overflow: auto;
-         }
-
-
- nav{
-
-display: grid;
-
- }
-
-  nav ul {
-                display: flex;
-                justify-content: space-between;
-                align-items: baseline;
-                /*gap: 5%;*/
-               /* flex: 1*/
-           /* }
-
-
-nav ul li a {
-                    padding: 1rem;
-                    margin-top: 1.5rem;
-                    font-size: 1.1rem;
-                    
-               }  
-
-
-/*Fonts: 'Cinzel Decorative', 'IM Fell DW Pica SC', 'IM Fell DW Pica', 'Noticia Text'*/
-
-/*h1, h2, h3{
-            font-family:'Cinzel Decorative' ,'IM Fell DW Pica SC','Courier New', Courier, monospace ;
-          }
-
-p {
-    font-family: 'IM Fell DW Pica', 'Courier New', Courier, monospace;
-}
-
- /*CLASSES*/
-
-/*.menu {
-        flex-basis: 800px;
-        grid-column: 3/9;
-        grid-row: 2/3;
-        margin-right: 2rem;
-      }
-
-.menu a, footer a{
-    color: bisque;
-}
- 
-.logo{
-
-width: 50%;
-height: auto;
-margin-bottom: 1rem;
-margin-top: 1rem;
-margin-left: 1.5rem;
-
-}
-
-.searchBtn{
-
-margin-left: 30%;
-border-radius: 1rem;
-background-color: gold;
-
-}
-
- .icon{
-
-grid-column: 1/2;
-grid-row: 1/4;
-
-
- }
-
-        
-.menu a.active {
-  color: gold; 
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-
-.borrow, .lend,.buy, .sell {
-
-    display: grid;
-    grid-template-columns:30% 70%;
-    height: 90vh;
-    margin-left: 1rem;
-}
-
-.actions{
-    background-color: rgb(36, 31, 124);
-    margin: 1rem;
-max-height: 40rem;
-}
-
-.details{
-    background-color: white;
-    margin: 1rem;
-    border: 1rem rgb(36, 31, 124) solid;
-}
-
-.actions>ul>li{
-    background-color: gold;
-    margin: 1.5rem;
-    font-size: 2rem;
-}
-
-.dropdown {
-    text-align: center;
-    border-radius: 1rem;
-    font-size: 1rem;
-    width: 70%;
-    margin-left: 1rem;
-}
-
-/*IDs*/
-
-
-/*#trans {
-  background-color: transparent;
-
-}  */
-
-
-
 /* =============================
    Global Reset & Base Styles
 ============================= */
@@ -342,6 +152,8 @@ nav {
 .heroButtons button:hover {
   background-color: rgb(255, 215, 100);
 }
+
+
 
 /* =============================
    Categories Section
@@ -511,74 +323,166 @@ margin-top: 10%;
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
- /*CLASSES*/
+/* =============================
+   BORROW PAGE
+============================= */
+.borrow {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: rgb(255, 217, 190);
+}
 
- /*.searchBtn {
-  color: black;
+/* Sidebar */
+.actions {
+  background-color: rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1rem;
+  /*color: bisque;*/
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.actions ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.actions li a,
+.actions li button {
+  background: none;
   border: none;
+  /*color: bisque;*/
+  text-align: left;
   cursor: pointer;
+  /*font-size: 1.5rem;*/
+  font-family: 'IM Fell DW Pica', serif;
+  transition: color 0.3s ease;
+}
+
+.actions li a {
+    color: greenyellow;
+    font-size: 1.5rem;
+}
+
+.actions li button{
+    color: bisque;
+    font-size: 1rem;
+    background-color: rgb(40, 40, 205);
+}
+
+.actions li a:hover,
+.actions li button:hover {
+  color: gold;
+}
+
+.actions .role {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: gold;
+  margin-bottom: 0.5rem;
+}
+
+.role {
+    font-size: 2rem;
+}
+
+
+/* Details & Search Area */
+.details {
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 2rem;
+  min-height: 70vh;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+}
+
+/* Search Form */
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.search input,
+.search select {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid rgb(36, 31, 124);
+  font-family: 'Noticia Text', serif;
+}
+
+.searchBtn {
+  background-color: gold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .searchBtn:hover {
-  background-color: #a5692a;
+  background-color: rgb(255, 215, 100);
 }
 
- .search{
-
-/*grid-column: 2/3;
-grid-row: 2/3;
-margin-right: 8rem;
-margin-bottom: 1rem;*/
-
- /* display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-
- }
-
- .results {
+/* Search Results Grid */
+.results {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
 .book {
-  background-color: white;
+  border: 2px solid rgb(36, 31, 124);
+  border-radius: 0.8rem;
   padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background-color: bisque;
   text-align: center;
 }
 
 .book img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5px;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.book h3 {
+  color: rgb(36, 31, 124);
+  margin-top: 1rem;
 }
 
 .borrowBtn {
-  background-color: #007b55;
-  color: white;
+  background-color: rgb(36, 31, 124);
+  color: gold;
   border: none;
+  border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
   margin-top: 0.5rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .borrowBtn:hover {
-  background-color: #005f40;
+  background-color: rgb(55, 48, 180);
 }
 
- /*IDs*/
-
-/*#searchInput, #filterType, .searchBtn {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 1rem;
-  border: 0.5rem solid gold;
+/* =============================
+   FOOTER FIX (Always at bottom)
+============================= */
+footer {
+  margin-top: auto;
 }
+
+
+
 
 /* ========== HOME LAYOUT ========== */
 .home {
@@ -709,7 +613,7 @@ margin-bottom: 1rem;*/
   background-color: rgb(36, 31, 124);
   border-radius: 1rem;
   padding: 1rem;
-  color: bisque;
+  /*color: bisque;**/
   height: fit-content;
   position: sticky;
   top: 2rem;
@@ -726,10 +630,10 @@ margin-bottom: 1rem;*/
 .actions li span {
   background: none;
   border: none;
-  color: bisque;
+  /*color: bisque;*/
   text-align: left;
   cursor: pointer;
-  font-size: 1rem;
+  /*font-size: 1.5rem;*/
   font-family: 'IM Fell DW Pica', serif;
   transition: color 0.3s ease;
 }
@@ -782,7 +686,7 @@ footer {
   background-color: rgb(36, 31, 124);
   border-radius: 1rem;
   padding: 1rem;
-  color: bisque;
+  /*color: bisque;*/
   height: fit-content;
   position: sticky;
   top: 2rem;
@@ -798,10 +702,10 @@ footer {
 .buy .actions li button {
   background: none;
   border: none;
-  color: bisque;
+  /*color: bisque;*/
   text-align: left;
   cursor: pointer;
-  font-size: 1rem;
+  /*font-size: 1.5rem;*/
   font-family: 'IM Fell DW Pica', serif;
   transition: color 0.3s ease;
 }
@@ -920,7 +824,7 @@ footer {
   background-color: rgb(36, 31, 124);
   border-radius: 1rem;
   padding: 1rem;
-  color: bisque;
+  /*color: bisque;*/
   height: fit-content;
   position: sticky;
   top: 2rem;
@@ -936,10 +840,10 @@ footer {
 .sell .actions li button {
   background: none;
   border: none;
-  color: bisque;
+  /*color: bisque;*/
   text-align: left;
   cursor: pointer;
-  font-size: 1rem;
+  /*font-size: 1.5rem;*/
   font-family: 'IM Fell DW Pica', serif;
   transition: color 0.3s ease;
 }
@@ -960,7 +864,7 @@ footer {
   background-color: white;
   border: 3px solid rgb(36, 31, 124);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1rem;
   min-height: 70vh;
   box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
 }
@@ -1033,434 +937,335 @@ footer {
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
                                                         /*COMMUNITY*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-/*ELEMENTS*/
-
-/*form input, form textarea {
-  width: 90%;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
 
 
-/*CLASSES*/
-
-/*.community{
-    display: grid;
-}
-
-.reviews{
-    grid-column: 1/3;
-    grid-row: 1/3;
-    background-color: aqua;
-    margin: 1rem;
-}
-
-.reviews>h1{
-    margin: 1.5rem;
-    font-size: 3rem;
-    text-align: center;
-}
-
-.clubs{
-    grid-column: 3/4;
-    grid-row: 1/2;
-    background-color: blue;
-    margin: 1rem;
-}
-
-.threads{
-    grid-column: 3/4;
-    grid-row: 2/3;
-    background-color: blueviolet;
-    margin: 1rem;
-}
-
-.revImage{
-    width :100%; 
-    height:auto;
-    grid-column: 1/2;
-    grid-row: 1/4;
-    margin-top: 2rem;
-    margin-left: 1rem;
-}
-
-.revTitle{
-    grid-column: 2/3;
-    grid-row: 1/2;
-    margin: 2rem;
-}
-
-.revStars{
-    grid-column: 3/4;
-    grid-row: 1/2;
-    display: flex;
-     margin-top: 2rem;
-}
-
-.revPara{
-    grid-column: 2/4;
-    grid-row: 2/4;
-    margin: 1rem;
-    margin: 2rem;
-}
-
-.reviews>ul>li{
-    background-color: blueviolet;
-    margin: 1.5rem;
-}
-.view{
-    text-align: right;
-}
-
-.reviewBox{
-    display: grid;
-}
-
-.clubBtn{
-
-  padding: 10px 20px;
-  margin: 10px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-left: 27%;
-  font-size: 1.5rem;
-
-}
-
-.clubBtn:hover {
-  background-color: #555;
-}
-
-.form-container {
-  display: none;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 400px;
-  margin: 30px auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.joinButtons {
-  display: flex;
-  justify-content: space-evenly;
-
-}
-
-.listings>h2{
-
-text-align: center;
-margin: 2rem;
-text-decoration: overline;
-padding: 2rem;
-}
-
-.listing{
-
-display: grid;
-background-color: aquamarine;
-margin: 1rem;
-
-}
-
-.listImg{
-
-grid-column: 1/2;
-grid-row: 1/3;
-width: 75%;
-height: auto;
-margin-left: 1rem;
-background-color: aliceblue;
-}
-
-.listH3{
-
-grid-column: 2/4;
-grid-row: 1/2;
-background-color: aliceblue;
-font-size: 1rem;
-}
-
-.listPara{
-
-grid-column: 2/4;
-grid-row: 2/3;
-background-color: aliceblue;
-}
-
-.listMembers{
-
-grid-column: 1/2;
-grid-row: 3/4;
-text-align: center;
-
-}
-
-.joinBTn{
-
-grid-column: 4/5;
-grid-row: 2/3;
-  height: 2.5rem;
-  margin-top: 1rem;
-  margin-right: 1rem;
-}
-
-
-.listPara, .listH3{
-    margin-right: 1.5rem;
-}
-
-.threadH2{
-    text-align: center;
-    margin: 1rem;
-}
-
-.thread{
-    display: grid;
-      border: 0.1rem black solid;
-    margin: 0.5rem;
-}
-
-.threadTopic
-{
-grid-column: 1/3;
-grid-row: 1/2;
-}
-
-.threadP1{
-grid-column: 1/2;
-grid-row: 2/3;
-}
-
-.threadP2{
-grid-column: 2/3;
-grid-row: 2/3;
-}
-
-.threadBtn{
-grid-column: 3/4;
-grid-row: 1/3;
-width: 8rem;
-height: 2.5rem;
-justify-content: center;
-margin-top: 0.2rem;
-border-radius: 0.5rem;
-}
-
- /*IDs*/
-
-
-/* ---------- FORM ELEMENTS ---------- */
-form input,
-form textarea {
-  width: 90%;
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-/* ---------- COMMUNITY LAYOUT ---------- */
+/* =============================
+   COMMUNITY PAGE
+============================= */
 .community {
   display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: rgb(255, 217, 190);
+  font-family: 'Noticia Text', serif;
 }
 
-/* ---------- REVIEWS SECTION ---------- */
-.reviews {
-  grid-column: 1 / 3;
-  grid-row: 1 / 3;
-  background-color: aqua;
-  margin: 1rem;
+/* =============================
+   BOOK REVIEWS
+============================= */
+.reviews h1, .reviews h3 {
+  color: rgb(36, 31, 124);
+  margin-bottom: 1rem;
 }
 
-.reviews > h1 {
-  margin: 1.5rem;
-  font-size: 3rem;
-  text-align: center;
-}
-
-.reviews > ul > li {
-  background-color: blueviolet;
-  margin: 1.5rem;
-}
-
-/* ---------- CLUBS SECTION ---------- */
-.clubs {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-  background-color: blue;
-  margin: 1rem;
-}
-
-/* ---------- THREADS SECTION ---------- */
-.threads {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-  background-color: blueviolet;
-  margin: 1rem;
-}
-
-/* ---------- REVIEW DETAILS ---------- */
-.revImage {
-  width: 100%;
-  height: auto;
-  grid-column: 1 / 2;
-  grid-row: 1 / 4;
-  margin: 2rem 0 0 1rem;
-}
-
-.revTitle {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  margin: 2rem;
-}
-
-.revStars {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-  display: flex;
-  margin-top: 2rem;
-}
-
-.revPara {
-  grid-column: 2 / 4;
-  grid-row: 2 / 4;
-  margin: 2rem;
-}
-
-.view {
-  text-align: right;
+.reviews ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+  list-style: none;
 }
 
 .reviewBox {
-  display: grid;
+  background-color: bisque;
+  border: 2px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ---------- CLUB BUTTON ---------- */
-.clubBtn {
-  padding: 10px 20px;
-  margin: 10px 0 10px 27%;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.reviewBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(36, 31, 124, 0.3);
+}
+
+.revImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.revTitle {
+  color: rgb(36, 31, 124);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.revStars {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.revStars li img {
+  width: 20px;
+  height: 20px;
+}
+
+.revPara {
+  font-size: 0.95rem;
+  color: rgb(36, 31, 124);
+}
+
+.revPara a {
+  color: gold;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.revPara a:hover {
+  text-decoration: underline;
+}
+
+.reviews .view h3 {
+  color: rgb(36, 31, 124);
+  text-align: right;
+  margin-top: 1rem;
   cursor: pointer;
-  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.reviews .view h3:hover {
+  color: gold;
+}
+
+/* =============================
+   BOOK CLUBS
+============================= */
+.clubs {
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+}
+
+.clubBtn {
+  background-color: rgb(36, 31, 124);
+  color: gold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 .clubBtn:hover {
-  background-color: #555;
+  background-color: rgb(55, 48, 180);
 }
 
-/* ---------- FORM CONTAINER ---------- */
+/* Club Form */
 .form-container {
   display: none;
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  max-width: 400px;
-  margin: 30px auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: bisque;
+  border: 2px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 2px solid rgb(36, 31, 124);
+  border-radius: 0.5rem;
+  font-family: 'Noticia Text', serif;
+}
+
+.form-container h3 {
+  color: rgb(36, 31, 124);
+  margin-bottom: 1rem;
 }
 
 .joinButtons {
   display: flex;
-  justify-content: space-evenly;
+  gap: 1rem;
+  justify-content: flex-end;
 }
 
-/* ---------- LISTINGS SECTION ---------- */
-.listings > h2 {
-  text-align: center;
-  margin: 2rem;
-  padding: 2rem;
-  text-decoration: overline;
+.joinButtons button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.joinButtons button[type="submit"] {
+  background-color: rgb(36, 31, 124);
+  color: gold;
+}
+
+.joinButtons button[type="submit"]:hover {
+  background-color: rgb(55, 48, 180);
+}
+
+.joinButtons button#cancelBtn {
+  background-color: gold;
+  color: rgb(36, 31, 124);
+}
+
+.joinButtons button#cancelBtn:hover {
+  background-color: rgb(255, 215, 100);
+}
+
+/* Club Listings */
+.listings ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
 }
 
 .listing {
-  display: grid;
-  background-color: aquamarine;
-  margin: 1rem;
+  background-color: bisque;
+  border: 2px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ---------- INDIVIDUAL LISTING DETAILS ---------- */
+.listing:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(36, 31, 124, 0.3);
+}
+
 .listImg {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-  width: 75%;
-  height: auto;
-  margin-left: 1rem;
-  background-color: aliceblue;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .listH3 {
-  grid-column: 2 / 4;
-  grid-row: 1 / 2;
-  background-color: aliceblue;
-  font-size: 1rem;
-  margin-right: 1.5rem;
+  color: rgb(36, 31, 124);
+  margin-bottom: 0.5rem;
 }
 
 .listPara {
-  grid-column: 2 / 4;
-  grid-row: 2 / 3;
-  background-color: aliceblue;
-  margin-right: 1.5rem;
+  font-size: 0.9rem;
+  color: rgb(36, 31, 124);
+  margin-bottom: 0.5rem;
 }
 
 .listMembers {
-  grid-column: 1 / 2;
-  grid-row: 3 / 4;
-  text-align: center;
+  font-weight: bold;
+  color: rgb(36, 31, 124);
+  margin-bottom: 0.5rem;
 }
 
 .joinBTn {
-  grid-column: 4 / 5;
-  grid-row: 2 / 3;
-  height: 2.5rem;
-  margin-top: 1rem;
-  margin-right: 1rem;
+  background-color: rgb(36, 31, 124);
+  color: gold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-/* ---------- THREADS SECTION ---------- */
+.joinBTn:hover {
+  background-color: rgb(55, 48, 180);
+}
+
+/* =============================
+   DISCUSSION THREADS
+============================= */
+.threads {
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+}
+
 .threadH2 {
-  text-align: center;
-  margin: 1rem;
+  color: rgb(36, 31, 124);
+  margin-bottom: 1rem;
 }
 
 .thread {
+  background-color: bisque;
+  border: 2px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
   display: grid;
-  border: 0.1rem solid black;
-  margin: 0.5rem;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: center;
+  gap: 1rem;
 }
 
 .threadTopic {
-  grid-column: 1 / 3;
-  grid-row: 1 / 2;
+  font-weight: bold;
+  color: rgb(36, 31, 124);
 }
 
-.threadP1 {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-
+.threadP1,
 .threadP2 {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
+  text-align: center;
+  color: rgb(36, 31, 124);
 }
 
 .threadBtn {
-  grid-column: 3 / 4;
-  grid-row: 1 / 3;
-  width: 8rem;
-  height: 2.5rem;
-  justify-content: center;
-  margin-top: 0.2rem;
+  background-color: rgb(36, 31, 124);
+  color: gold;
+  border: none;
   border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.threadBtn:hover {
+  background-color: rgb(55, 48, 180);
+}
+
+/* =============================
+   FOOTER
+============================= */
+footer {
+  margin-top: auto;
+  background-color: rgb(36, 31, 124);
+  padding: 1rem 0;
+  text-align: center;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li a {
+  color: gold;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
 }
 
 
@@ -1804,159 +1609,254 @@ td {
                                                         /*ACCOUNT*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------*/
 
-/*ELEMENTS*/
-
-/*CLASSES*/
-
- /*IDs*/
-
-
-
-
-
-
-
 /* =============================
-   BORROW PAGE
+   ACCOUNT PAGE
 ============================= */
-.borrow {
+
+.account {
   display: grid;
   grid-template-columns: 220px 1fr;
   gap: 2rem;
   padding: 2rem;
   background-color: rgb(255, 217, 190);
-}
-
-/* Sidebar */
-.actions {
-  background-color: rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 1rem;
-  color: bisque;
-  height: fit-content;
-  position: sticky;
-  top: 2rem;
-}
-
-.actions ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.actions li a,
-.actions li button {
-  background: none;
-  border: none;
-  color: bisque;
-  text-align: left;
-  cursor: pointer;
-  font-size: 1rem;
-  font-family: 'IM Fell DW Pica', serif;
-  transition: color 0.3s ease;
-}
-
-.actions li a:hover,
-.actions li button:hover {
-  color: gold;
-}
-
-.actions .role {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: gold;
-  margin-bottom: 0.5rem;
-}
-
-/* Details & Search Area */
-.details {
-  background-color: white;
-  border: 3px solid rgb(36, 31, 124);
-  border-radius: 1rem;
-  padding: 2rem;
-  min-height: 70vh;
-  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
-}
-
-/* Search Form */
-.search {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
-  justify-content: center;
-}
-
-.search input,
-.search select {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid rgb(36, 31, 124);
-  font-family: 'Noticia Text', serif;
-}
-
-.searchBtn {
-  background-color: gold;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.searchBtn:hover {
-  background-color: rgb(255, 215, 100);
-}
-
-/* Search Results Grid */
-.results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.book {
-  border: 2px solid rgb(36, 31, 124);
-  border-radius: 0.8rem;
-  padding: 1rem;
-  background-color: bisque;
-  text-align: center;
-}
-
-.book img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 0.5rem;
-}
-
-.book h3 {
-  color: rgb(36, 31, 124);
-  margin-top: 1rem;
-}
-
-.borrowBtn {
-  background-color: rgb(36, 31, 124);
-  color: gold;
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.borrowBtn:hover {
-  background-color: rgb(55, 48, 180);
+  min-height: 80vh;
 }
 
 /* =============================
-   FOOTER FIX (Always at bottom)
+   SIDEBAR / NAV LINK HIGHLIGHT
+============================= */
+.account .menu a.active {
+  color: gold;
+  font-weight: bold;
+}
+
+/* =============================
+   PROFILE SECTION
+============================= */
+.profile {
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+  text-align: center;
+}
+
+.profile h2 {
+  color: rgb(36, 31, 124);
+  margin-bottom: 1rem;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.profileContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileImg {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid gold;
+  object-fit: cover;
+}
+
+.profileContent p {
+  font-family: 'IM Fell DW Pica', serif;
+  font-size: 1rem;
+  color: rgb(36, 31, 124);
+  margin: 0.2rem 0;
+}
+
+/* =============================
+   TRANSACTION HISTORY
+============================= */
+.transaction {
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+}
+
+.transaction h2 {
+  color: rgb(36, 31, 124);
+  font-family: 'Cinzel Decorative', cursive;
+  margin-bottom: 1rem;
+}
+
+.transaction table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Noticia Text', serif;
+}
+
+.transaction th,
+.transaction td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid rgb(36, 31, 124);
+}
+
+.transaction th {
+  background-color: rgb(36, 31, 124);
+  color: gold;
+}
+
+.transaction tbody tr:hover {
+  background-color: rgb(255, 235, 180);
+  transition: background-color 0.3s ease;
+}
+
+/* =============================
+   SETTINGS SECTION
+============================= */
+.settings {
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+  font-family: 'IM Fell DW Pica', serif;
+}
+
+.settings h2 {
+  color: rgb(36, 31, 124);
+  font-family: 'Cinzel Decorative', cursive;
+  margin-bottom: 1rem;
+}
+
+.settings p {
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  color: rgb(36, 31, 124);
+  transition: color 0.3s ease;
+}
+
+.settings p:hover {
+  color: gold;
+  font-weight: bold;
+}
+
+/* =============================
+   FOOTER
 ============================= */
 footer {
   margin-top: auto;
+  background-color: rgb(36, 31, 124);
+  padding: 1rem;
 }
+
+footer ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer a {
+  color: bisque;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: gold;
+  transition: color 0.3s ease;
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+@media screen and (max-width: 900px) {
+  .account {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .profileContent {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .profileImg {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+   /*CATEGORIES PAGE*/
+
+
+   /* CATEGORY PAGE */
+.categoryPage {
+  padding: 2rem;
+  background-color: rgb(255, 217, 190);
+  font-family: 'IM Fell DW Pica', serif;
+}
+
+.categoriesH1 {
+  text-align: center;
+  color: rgb(36, 31, 124);
+  font-family: 'Cinzel Decorative', cursive;
+  margin-bottom: 2rem;
+}
+
+.categoryX {
+  margin-bottom: 2rem;
+  background-color: white;
+  border: 3px solid rgb(36, 31, 124);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(36, 31, 124, 0.2);
+}
+
+.categoryTitle {
+  color: rgb(36, 31, 124);
+  margin-bottom: 1rem;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.categoryGrid img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.categoryGrid img:hover {
+  transform: scale(1.05);
+}
+
+.viewMore {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: gold;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.viewMore:hover {
+  color: rgb(36, 31, 124);
+}
+
+
+
+
+
 
 
 

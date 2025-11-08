@@ -287,7 +287,7 @@ categoryItems.forEach(async li => {
 /* ---------------------------------------------------------------------------
    BORROW / BUY PAGE SEARCH
 --------------------------------------------------------------------------- */
-const form = document.getElementById("searchForm");
+/*const form = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
 const filterType = document.getElementById("filterType");
 const resultsSection = document.getElementById("results");
@@ -357,7 +357,75 @@ if (form && searchInput && filterType && resultsSection) {
       }
     }
   });
-}
+}*/
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("searchInput");
+  const filterType = document.getElementById("filterType");
+  const resultsSection = document.getElementById("results");
+
+  if (!searchForm || !searchInput || !filterType || !resultsSection) return;
+
+  // Determine current page
+  const currentPage = window.location.pathname.includes("buy.html") ? "buy" : "borrow";
+  const buttonText = currentPage === "buy" ? "Buy Now" : "Borrow Now";
+  const targetPage = currentPage === "buy" ? "buyPage.html" : "borrowPage.html";
+
+  searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    const filter = filterType.value;
+
+    if (!query) return;
+
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${filter}:${encodeURIComponent(query)}&maxResults=12`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      resultsSection.innerHTML = "";
+
+      if (!data.items || data.items.length === 0) {
+        resultsSection.innerHTML = "<p>No books found.</p>";
+        return;
+      }
+
+      data.items.forEach((item) => {
+        const book = item.volumeInfo;
+        const title = book.title || "No title available";
+        const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+        const description = book.description
+          ? book.description.substring(0, 150) + "..."
+          : "No description available.";
+        const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
+
+        const bookDiv = document.createElement("div");
+        bookDiv.classList.add("book");
+
+        bookDiv.innerHTML = `
+          <img src="${thumbnail}" alt="${title} cover">
+          <h3>${title}</h3>
+          <p><strong>Author:</strong> ${authors}</p>
+          <p>${description}</p>
+          <button class="borrowBtn">${buttonText}</button>
+        `;
+
+        // Add click listener for button
+        const btn = bookDiv.querySelector(".borrowBtn");
+        btn.addEventListener("click", () => {
+          window.location.href = `${targetPage}?book=${encodeURIComponent(title)}`;
+        });
+
+        resultsSection.appendChild(bookDiv);
+      });
+    } catch (err) {
+      console.error("Error fetching books:", err);
+      resultsSection.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+    }
+  });
+});
 
 /* ---------------------------------------------------------------------------
    COMMUNITY PAGE (Book Club Form)
@@ -387,3 +455,76 @@ if (openFormBtn && clubForm && cancelBtn) {
     });
   }
 }
+
+
+/* CATEGORIES PAGE */
+document.addEventListener("DOMContentLoaded", () => {
+  const categories = document.querySelectorAll(".categoryX");
+
+  categories.forEach(categoryDiv => {
+    const categoryName = categoryDiv.dataset.category;
+    const grid = categoryDiv.querySelector(".categoryGrid");
+    const viewMore = categoryDiv.querySelector(".viewMore");
+
+    let startIndex = 0;
+    const maxResultsPerFetch = 4;
+    let expanded = false; // Track toggle state
+    let allBooks = [];    // Store all loaded books
+
+    async function fetchBooks() {
+      const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(categoryName)}&startIndex=${startIndex}&maxResults=${maxResultsPerFetch}`;
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        if (!data.items) return;
+
+        data.items.forEach(item => {
+          const book = item.volumeInfo;
+          const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
+          const title = book.title || "No Title";
+          allBooks.push({ thumbnail, title });
+        });
+
+        startIndex += maxResultsPerFetch;
+      } catch (err) {
+        console.error(`Error fetching books for ${categoryName}:`, err);
+      }
+    }
+
+    function renderBooks() {
+      grid.innerHTML = "";
+
+      const booksToShow = expanded ? allBooks.length : Math.min(4, allBooks.length);
+
+      allBooks.slice(0, booksToShow).forEach(book => {
+        const img = document.createElement("img");
+        img.src = book.thumbnail;
+        img.alt = book.title;
+        img.title = book.title;
+        grid.appendChild(img);
+      });
+
+      viewMore.textContent = expanded ? "...show less" : "...view more";
+    }
+
+    // Load initial 4 books
+    (async () => {
+      await fetchBooks();
+      renderBooks();
+    })();
+
+    // Toggle expand/collapse
+    viewMore.addEventListener("click", async e => {
+      e.preventDefault();
+
+      if (!expanded) {
+        // Fetch next batch of books if not already loaded enough
+        await fetchBooks();
+      }
+
+      expanded = !expanded;
+      renderBooks();
+    });
+  });
+});
