@@ -457,6 +457,313 @@ if (openFormBtn && clubForm && cancelBtn) {
 }
 
 
+/*BORROW PAGE REDIRECT*/
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookTitle = urlParams.get("book");
+
+  const bookDetailsDiv = document.getElementById("bookDetails");
+  const borrowForm = document.getElementById("borrowForm");
+
+  if (!bookTitle) {
+    bookDetailsDiv.innerHTML = "<p>No book selected.</p>";
+    borrowForm.style.display = "none";
+    return;
+  }
+
+  try {
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(bookTitle)}&maxResults=1`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (!data.items || data.items.length === 0) {
+      bookDetailsDiv.innerHTML = "<p>Book not found.</p>";
+      borrowForm.style.display = "none";
+      return;
+    }
+
+    const book = data.items[0].volumeInfo;
+    const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/200";
+    const title = book.title || "No Title";
+    const authors = book.authors ? book.authors.join(", ") : "Unknown Author";
+    const description = book.description || "No description available.";
+
+    bookDetailsDiv.innerHTML = `
+      <img src="${thumbnail}" alt="${title} cover">
+      <div class="bookInfo">
+        <h2>${title}</h2>
+        <p><strong>Author:</strong> ${authors}</p>
+        <p>${description}</p>
+      </div>
+    `;
+
+    // --- LENDER SELECTION ---
+    const lenders = [
+      { name: "Alice Smith", distance: "2 km", maxDays: 14 },
+      { name: "Bob Johnson", distance: "5 km", maxDays: 21 },
+      { name: "Carol Lee", distance: "3 km", maxDays: 7 },
+      { name: "David Brown", distance: "8 km", maxDays: 14 },
+      { name: "Eve Wilson", distance: "1 km", maxDays: 10 }
+    ];
+
+    const lenderSelect = document.createElement("select");
+    lenderSelect.id = "lenderSelect";
+    lenderSelect.required = true;
+
+    lenders.forEach(lender => {
+      const option = document.createElement("option");
+      option.value = lender.name;
+      option.textContent = `${lender.name} - ${lender.distance}, up to ${lender.maxDays} days`;
+      lenderSelect.appendChild(option);
+    });
+
+    const lenderLabel = document.createElement("label");
+    lenderLabel.htmlFor = "lenderSelect";
+    lenderLabel.textContent = "Choose a lender:";
+
+    borrowForm.insertBefore(lenderLabel, borrowForm.querySelector("#borrowDuration"));
+    borrowForm.insertBefore(lenderSelect, borrowForm.querySelector("#borrowDuration"));
+
+  } catch (err) {
+    console.error("Error fetching book:", err);
+    bookDetailsDiv.innerHTML = "<p>Could not load book details.</p>";
+    borrowForm.style.display = "none";
+  }
+
+  // Handle borrow form submission
+  borrowForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const duration = document.getElementById("borrowDuration").value;
+    const lender = document.getElementById("lenderSelect").value;
+
+    if (!fullName || !email || !lender) return;
+
+    alert(`Success! You have borrowed "${bookTitle}" from ${lender} for ${duration} days.\nA confirmation has been sent to ${email}.`);
+
+    borrowForm.reset();
+  });
+});
+
+
+/*BUY PAGE REDIRECT*/
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookTitle = urlParams.get("book");
+
+  const bookDetailsDiv = document.getElementById("bookDetails");
+  const buyForm = document.getElementById("buyForm");
+
+  if (!bookTitle) {
+    bookDetailsDiv.innerHTML = "<p>No book selected.</p>";
+    buyForm.style.display = "none";
+    return;
+  }
+
+  try {
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(bookTitle)}&maxResults=1`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (!data.items || data.items.length === 0) {
+      bookDetailsDiv.innerHTML = "<p>Book not found.</p>";
+      buyForm.style.display = "none";
+      return;
+    }
+
+    const book = data.items[0].volumeInfo;
+    const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/200";
+    const title = book.title || "No Title";
+    const authors = book.authors ? book.authors.join(", ") : "Unknown Author";
+    const description = book.description || "No description available.";
+
+    bookDetailsDiv.innerHTML = `
+      <img src="${thumbnail}" alt="${title} cover">
+      <div class="bookInfo">
+        <h2>${title}</h2>
+        <p><strong>Author:</strong> ${authors}</p>
+        <p>${description}</p>
+      </div>
+    `;
+
+    // --- SELLER SELECTION (Realistic People) ---
+    const sellers = [
+      { name: "Anele Mthembu", location: "2 km away", price: "R120" },
+      { name: "Thabo Nkosi", location: "5 km away", price: "R100" },
+      { name: "Lerato Dlamini", location: "3 km away", price: "R110" },
+      { name: "Sibongile Khumalo", location: "7 km away", price: "R95" },
+      { name: "Johan van der Merwe", location: "1 km away", price: "R130" }
+    ];
+
+    // Create seller select dropdown
+    const sellerSelect = document.createElement("select");
+    sellerSelect.id = "sellerSelect";
+    sellerSelect.required = true;
+
+    // Add a placeholder option
+    const placeholderOption = document.createElement("option");
+    placeholderOption.value = "";
+    placeholderOption.textContent = "Select a seller";
+    placeholderOption.disabled = true;
+    placeholderOption.selected = true;
+    sellerSelect.appendChild(placeholderOption);
+
+    // Add seller options
+    sellers.forEach(seller => {
+      const option = document.createElement("option");
+      option.value = seller.name;
+      option.textContent = `${seller.name} - ${seller.location}, ${seller.price}`;
+      sellerSelect.appendChild(option);
+    });
+
+    const sellerLabel = document.createElement("label");
+    sellerLabel.htmlFor = "sellerSelect";
+    sellerLabel.textContent = "Choose a seller:";
+
+    buyForm.insertBefore(sellerLabel, buyForm.querySelector("button"));
+    buyForm.insertBefore(sellerSelect, buyForm.querySelector("button"));
+
+  } catch (err) {
+    console.error("Error fetching book:", err);
+    bookDetailsDiv.innerHTML = "<p>Could not load book details.</p>";
+    buyForm.style.display = "none";
+  }
+
+  // --- Handle purchase form submission ---
+  buyForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const seller = document.getElementById("sellerSelect").value;
+
+    if (!fullName || !email || !seller) return;
+
+    alert(`✅ Success! You have purchased "${bookTitle}" from ${seller}.\nA confirmation has been sent to ${email}.`);
+
+    buyForm.reset();
+  });
+});
+
+/*LENDER ADD BOOK*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("addBookForm");
+  const bookList = document.getElementById("bookList");
+
+  // Load saved books
+  let books = JSON.parse(localStorage.getItem("lenderBooks")) || [];
+
+  // Function to display books
+  function renderBooks() {
+    bookList.innerHTML = "";
+
+    if (books.length === 0) {
+      bookList.innerHTML = "<p>No books added yet.</p>";
+      return;
+    }
+
+    books.forEach((book, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <div class="book-info">
+          <strong>${book.title}</strong> by ${book.author} <br>
+          <em>${book.genre || "Unknown Genre"}</em>
+        </div>
+        <span class="book-status ${book.status.toLowerCase().replace(" ", "-")}">
+          ${book.status}
+        </span>
+      `;
+      bookList.appendChild(li);
+    });
+  }
+
+  // Handle form submission
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newBook = {
+      title: document.getElementById("bookTitle").value.trim(),
+      author: document.getElementById("bookAuthor").value.trim(),
+      genre: document.getElementById("bookGenre").value.trim(),
+      status: document.getElementById("bookStatus").value
+    };
+
+    books.push(newBook);
+    localStorage.setItem("lenderBooks", JSON.stringify(books));
+
+    form.reset();
+    renderBooks();
+  });
+
+  renderBooks();
+});
+
+/*SELLER DETAILS*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("sellForm");
+  const bookList = document.getElementById("bookList");
+
+  let books = JSON.parse(localStorage.getItem("sellerBooks")) || [];
+
+  // Render books
+  function renderBooks() {
+    bookList.innerHTML = "";
+
+    if (books.length === 0) {
+      bookList.innerHTML = "<p>No books uploaded yet.</p>";
+      return;
+    }
+
+    books.forEach((book, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <div class="book-info">
+          <strong>${book.title}</strong> by ${book.author} <br>
+          <span class="book-condition">${book.condition}</span> |
+          <em>${book.category}</em>
+        </div>
+        <span class="book-price">R${book.price}</span>
+        <button class="delete-btn" data-index="${index}">Remove</button>
+      `;
+      bookList.appendChild(li);
+    });
+
+    // Add delete functionality
+    document.querySelectorAll(".delete-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const index = e.target.dataset.index;
+        books.splice(index, 1);
+        localStorage.setItem("sellerBooks", JSON.stringify(books));
+        renderBooks();
+      });
+    });
+  }
+
+  // Handle form submission
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newBook = {
+      title: document.getElementById("bookTitle").value.trim(),
+      author: document.getElementById("bookAuthor").value.trim(),
+      category: document.getElementById("bookCategory").value,
+      condition: document.getElementById("bookCondition").value,
+      price: document.getElementById("bookPrice").value
+    };
+
+    books.push(newBook);
+    localStorage.setItem("sellerBooks", JSON.stringify(books));
+    form.reset();
+    renderBooks();
+  });
+
+  renderBooks();
+});
+
 /* CATEGORIES PAGE */
 document.addEventListener("DOMContentLoaded", () => {
   const categories = document.querySelectorAll(".categoryX");

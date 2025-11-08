@@ -50,14 +50,31 @@
 
     </header>
 
-    <main>
+    <main class="borrowMain">
 
-        <h1>Borrow page</h1>
+    <section class="bookDetails" id="bookDetails">
 
+    </section>
 
+    <form class="borrowForm" id="borrowForm">
+      <h2>Finalize Borrowing</h2>
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" required>
 
-    </main>
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
 
+      <label for="borrowDuration">Borrow Duration (days):</label>
+      <select id="borrowDuration">
+        <option value="7">7</option>
+        <option value="14" selected>14</option>
+        <option value="21">21</option>
+      </select>
+
+      <button type="submit">Confirm Borrow</button>
+    </form>
+  
+</main>
             <footer>
 
         <ul>

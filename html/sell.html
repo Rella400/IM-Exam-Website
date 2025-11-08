@@ -50,42 +50,60 @@
 
     </header>
 
-    <main class="sell">
+<main class="sell">
 
-    <!-- Sidebar / Actions -->
-    <section class="actions">
-        <ul>
-            <li class="asideBtns"><a  href="borrow.html">Borrower</a></li>
-            <li class="asideBtns"><a class="asideBtns" href="lend.html">Lender</a></li>
-            <li class="asideBtns"><a class="asideBtns" href="buy.html">Buyer</a></li>
-            <li  class="role" class="activeRole" class="active">Seller</li>
-            <li><button class="dropdown">Upload New Book</button></li>
-            <li><button class="dropdown">Manage Inventory</button></li>
-            <li><button class="dropdown">Payment History</button></li>
-        </ul>
-    </section>
+  <!-- Sidebar / Actions -->
+  <section class="actions">
+    <ul>
+      <li class="asideBtns"><a href="borrow.html">Borrower</a></li>
+      <li class="asideBtns"><a href="lend.html">Lender</a></li>
+      <li class="asideBtns"><a href="buy.html">Buyer</a></li>
+      <li class="role activeRole">Seller</li>
+      <li><button class="dropdown">Upload New Book</button></li>
+      <li><button class="dropdown">Manage Inventory</button></li>
+      <li><button class="dropdown">Payment History</button></li>
+    </ul>
+  </section>
 
-    <!-- Main Content / Details -->
-    <section class="details">
-        <h2>Sell Your Books</h2>
+  <!-- Main Content / Details -->
+  <section class="details">
+    <h2>Sell Your Books</h2>
+    <p>Upload your books for sale and manage your listings below.</p>
 
-        <!-- Optional: Upload form -->
-        <form class="search" id="sellForm">
-            <input type="text" placeholder="Book Title" required>
-            <input type="text" placeholder="Author" required>
-            <select>
-                <option value="Fiction">Fiction</option>
-                <option value="Nonfiction">Nonfiction</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="Self-Help">Self-Help</option>
-            </select>
-            <button class="searchBtn" type="submit">Upload</button>
-        </form>
+    <!-- Upload Form -->
+    <form class="upload-form" id="sellForm">
+      <input type="text" id="bookTitle" placeholder="Book Title" required>
+      <input type="text" id="bookAuthor" placeholder="Author" required>
 
-        <div class="results" id="sellResults">
-            <!-- Uploaded books will appear here -->
-        </div>
-    </section>
+      <select id="bookCategory" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Nonfiction">Nonfiction</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Self-Help">Self-Help</option>
+        <option value="Biography">Biography</option>
+        <option value="Science">Science</option>
+        <option value="Romance">Romance</option>
+      </select>
+
+      <select id="bookCondition" required>
+        <option value="" disabled selected>Condition</option>
+        <option value="New">New</option>
+        <option value="Used - Good">Used - Good</option>
+        <option value="Used - Fair">Used - Fair</option>
+      </select>
+
+      <input type="number" id="bookPrice" placeholder="Price (R)" min="0" required>
+
+      <button class="uploadBtn" type="submit">Upload</button>
+    </form>
+
+    <!-- Uploaded Books -->
+    <div class="results" id="sellResults">
+      <h3>Your Uploaded Books</h3>
+      <ul id="bookList"></ul>
+    </div>
+  </section>
 
 </main>
 

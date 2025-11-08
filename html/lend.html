@@ -54,6 +54,29 @@
       <!-- You can add search form here if needed -->
       <h2>Welcome to the Lend Page</h2>
       <p>Manage your listings, track deliveries, and add new books to lend.</p>
+
+  <!-- Add New Book Form -->
+  <div class="add-book-section">
+    <h3>Add New Book</h3>
+    <form id="addBookForm">
+      <input type="text" id="bookTitle" placeholder="Book Title" required>
+      <input type="text" id="bookAuthor" placeholder="Author" required>
+      <input type="text" id="bookGenre" placeholder="Genre">
+      <select id="bookStatus" required>
+        <option value="Available">Available</option>
+        <option value="Borrowed">Borrowed</option>
+        <option value="Returned">Returned</option>
+        <option value="In Transit">In Transit</option>
+      </select>
+      <button type="submit">Add Book</button>
+    </form>
+  </div>
+
+  <!-- List of Added Books -->
+  <div class="book-list-section">
+    <h3>Your Listings</h3>
+    <ul id="bookList"></ul>
+  </div>
     </section>
   </main>
 

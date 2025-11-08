@@ -50,14 +50,25 @@
 
     </header>
 
-    <main>
+    <main class="borrowMain">
 
-        <h1>Buy page</h1>
+    <section class="bookDetails" id="bookDetails">
+      <!-- Book info will be dynamically loaded here -->
+    </section>
 
+    <form class="borrowForm" id="buyForm">
+      <h2>Finalize Purchase</h2>
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" required>
 
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
 
-    </main>
-
+      <!-- Seller selection will be dynamically inserted -->
+      <button type="submit">Confirm Purchase</button>
+    </form>
+  
+  </main>
             <footer>
 
         <ul>
