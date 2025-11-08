@@ -716,6 +716,357 @@ gsap.from(".categories li", {
 });
 
 
+/*GSAP FOR BORROW/BUY PAGE*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("searchInput");
+  const filterType = document.getElementById("filterType");
+  const resultsSection = document.getElementById("results");
+
+  if (!searchForm || !searchInput || !filterType || !resultsSection) return;
+
+
+  gsap.from(".actions li", {
+    opacity: 0,
+    x: -50,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out"
+  });
+
+
+  gsap.from(".search", {
+    opacity: 0,
+    y: -30,
+    duration: 0.8,
+    delay: 0.5,
+    ease: "power2.out"
+  });
+
+ 
+  function animateBooks() {
+    const books = resultsSection.querySelectorAll(".book");
+    gsap.fromTo(
+      books,
+      { opacity: 0, y: 30, scale: 0.9 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: "back.out(1.2)"
+      }
+    );
+  }
+
+
+  const currentPage = window.location.pathname.includes("buy.html") ? "buy" : "borrow";
+  const buttonText = currentPage === "buy" ? "Buy Now" : "Borrow Now";
+  const targetPage = currentPage === "buy" ? "buyPage.html" : "borrowPage.html";
+
+
+  searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    const filter = filterType.value;
+
+    if (!query) return;
+
+    const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${filter}:${encodeURIComponent(query)}&maxResults=12`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      resultsSection.innerHTML = "";
+
+      if (!data.items || data.items.length === 0) {
+        resultsSection.innerHTML = "<p>No books found.</p>";
+        return;
+      }
+
+      data.items.forEach((item) => {
+        const book = item.volumeInfo;
+        const title = book.title || "No title available";
+        const authors = book.authors ? book.authors.join(", ") : "Unknown author";
+        const description = book.description
+          ? book.description.substring(0, 150) + "..."
+          : "No description available.";
+        const thumbnail = book.imageLinks?.thumbnail || "https://via.placeholder.com/150";
+
+        const bookDiv = document.createElement("div");
+        bookDiv.classList.add("book");
+
+        bookDiv.innerHTML = `
+          <img src="${thumbnail}" alt="${title} cover">
+          <h3>${title}</h3>
+          <p><strong>Author:</strong> ${authors}</p>
+          <p>${description}</p>
+          <button class="borrowBtn">${buttonText}</button>
+        `;
+
+        const btn = bookDiv.querySelector(".borrowBtn");
+        btn.addEventListener("click", () => {
+          window.location.href = `${targetPage}?book=${encodeURIComponent(title)}`;
+        });
+
+        resultsSection.appendChild(bookDiv);
+      });
+
+
+      animateBooks();
+
+    } catch (err) {
+      console.error("Error fetching books:", err);
+      resultsSection.innerHTML = "<p>Something went wrong. Please try again later.</p>";
+    }
+  });
+});
+
+
+/*CATEGORIES GSAP*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  // === Animate Page Header ===
+  gsap.from(".categoriesH1", {
+    y: -50,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out"
+  });
+
+  // === Animate Each Category Container ===
+  gsap.from(".categoryX", {
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out",
+    stagger: 0.2
+  });
+
+  // === Animate Category Titles with Timeline ===
+  const titleTl = gsap.timeline();
+  document.querySelectorAll(".categoryTitle").forEach((title, i) => {
+    titleTl.from(title, {
+      x: -50,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power1.out",
+      delay: i * 0.1
+    });
+  });
+
+  // === Animate Books on Scroll ===
+  document.querySelectorAll(".categoryGrid").forEach(grid => {
+    gsap.from(grid.children, {
+      scrollTrigger: {
+        trigger: grid,
+        start: "top 80%", // start when grid top reaches 80% of viewport
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.15
+    });
+  });
+
+  // === Animate 'View More' links ===
+  gsap.from(".viewMore", {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    ease: "power2.out",
+    stagger: 0.2,
+    delay: 0.5
+  });
+});
+
+
+/* LEND PAGE GSAP*/
+
+document.addEventListener("DOMContentLoaded", () => {
+
+
+  const detailsTimeline = gsap.timeline({ defaults: { duration: 0.8, ease: "power2.out" } });
+
+  detailsTimeline
+    .from(".details h2", { y: 30, opacity: 0 })          
+    .from(".details p", { y: 20, opacity: 0 }, "-=0.4")   
+    .from(".add-book-section", { x: 50, opacity: 0 }, "-=0.4")
+    .from(".book-list-section", { x: -50, opacity: 0 }, "-=0.4");
+
+
+  const addBookBtn = document.querySelector("#addBookForm button");
+  if (addBookBtn) {
+    addBookBtn.addEventListener("mouseenter", () => {
+      gsap.to(addBookBtn, { scale: 1.05, duration: 0.2, ease: "power1.inOut" });
+    });
+    addBookBtn.addEventListener("mouseleave", () => {
+      gsap.to(addBookBtn, { scale: 1, duration: 0.2, ease: "power1.inOut" });
+    });
+  }
+
+
+  const bookList = document.getElementById("bookList");
+  const addBookForm = document.getElementById("addBookForm");
+
+  if (addBookForm && bookList) {
+    addBookForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById("bookTitle").value.trim();
+      const author = document.getElementById("bookAuthor").value.trim();
+      const genre = document.getElementById("bookGenre").value.trim();
+      const status = document.getElementById("bookStatus").value;
+
+      if (!title || !author) return;
+
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${title}</strong> by ${author} <em>(${genre || "No genre"}) - ${status}</em>`;
+      li.style.opacity = 0;
+      li.style.transform = "translateY(20px)";
+      bookList.appendChild(li);
+
+      gsap.to(li, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" });
+
+      addBookForm.reset();
+    });
+  }
+
+});
+
+
+/*COMMUNITY PAGE GSAP*/
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  gsap.from(".reviewBox", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    stagger: 0.3, 
+    ease: "power2.out",
+    onComplete: () => console.log("Reviews animation complete")
+  });
+
+  gsap.from("#openFormBtn", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.8,
+    delay: 0.5,
+    ease: "elastic.out(1, 0.5)"
+  });
+
+
+  gsap.from(".listing", {
+    opacity: 0,
+    x: -100,
+    duration: 1,
+    stagger: 0.25,
+    ease: "power1.out"
+  });
+
+ 
+  const threadTimeline = gsap.timeline({ defaults: { duration: 0.8, ease: "power2.out" } });
+  threadTimeline.from(".thread", { opacity: 0, y: 50, stagger: 0.2 })
+                .from(".threadBtn", { opacity: 0, scale: 0.8, stagger: 0.2 }, "-=0.5");
+
+
+  const viewMoreLinks = document.querySelectorAll(".view, .joinBtn");
+  viewMoreLinks.forEach(link => {
+    link.addEventListener("mouseenter", () => {
+      gsap.to(link, { scale: 1.1, duration: 0.3, ease: "power1.out" });
+    });
+    link.addEventListener("mouseleave", () => {
+      gsap.to(link, { scale: 1, duration: 0.3, ease: "power1.out" });
+    });
+  });
+
+ 
+  const modal = document.getElementById("threadModal");
+  const modalContent = document.querySelector(".modal-content");
+
+  const animateModalIn = () => {
+    gsap.fromTo(modalContent, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" });
+  };
+
+  document.querySelectorAll(".threadBtn").forEach(btn => {
+    btn.addEventListener("click", animateModalIn);
+  });
+});
+
+
+/*ACCOUNT GSAP*/
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  // =============================
+  // PROFILE SECTION ANIMATION
+  // =============================
+  gsap.from(".profileContent", {
+    y: -50,
+    opacity: 0,
+    duration: 1,
+    ease: "power2.out"
+  });
+
+  gsap.from(".profileImg", {
+    scale: 0,
+    duration: 1,
+    delay: 0.5,
+    ease: "elastic.out(1, 0.5)"
+  });
+
+  gsap.from(".profileContent p", {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 1
+  });
+
+  // =============================
+  // TRANSACTION TABLE ANIMATION
+  // =============================
+  gsap.from(".transaction table tbody tr", {
+    opacity: 0,
+    x: -50,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 0.5,
+    ease: "power1.out"
+  });
+
+  // =============================
+  // SETTINGS SECTION ANIMATION
+  // =============================
+  gsap.from(".settings p", {
+    opacity: 0,
+    x: 30,
+    duration: 0.8,
+    stagger: 0.2,
+    delay: 0.5,
+    ease: "power2.out"
+  });
+
+  /*gsap.from(".settings h2", {
+    opacity: 0,
+    y: -20,
+    duration: 1,
+    ease: "power2.out"
+  });*/
+
+  // =============================
+  // OPTIONAL TIMELINE FOR SEQUENTIAL ENTRANCE
+  // =============================
+  const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
+  tl.from(".profile h2", { opacity: 0, y: -30 })
+    .from(".transaction h2", { opacity: 0, y: -30 }, "-=0.5")
+    .from(".settings h2", { opacity: 0, y: -30 }, "-=0.5");
+
+});
 
 
 
