@@ -1,24 +1,4 @@
 
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*BOOKS BY CATEGORIES*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*REVIEWS*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                        /*ACCOUNT*/
-/*-----------------------------------------------------------------------------------------------------------------------------------------------*/
-
 /* ---------------------------------------------------------------------------
    UNIVERSAL
 --------------------------------------------------------------------------- */
@@ -74,7 +54,7 @@ categoryItems.forEach(async li => {
       }
 
       if (h2) {
-        h2.textContent = category; // Keep category name consistent
+        h2.textContent = category; 
       }
     }
   } catch (error) {
@@ -139,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <button class="borrowBtn">${buttonText}</button>
         `;
 
-        // Add click listener for button
+
         const btn = bookDiv.querySelector(".borrowBtn");
         btn.addEventListener("click", () => {
           window.location.href = `${targetPage}?book=${encodeURIComponent(title)}`;
@@ -163,17 +143,17 @@ const cancelBtn = document.getElementById("cancelBtn");
 const clubFormContent = document.getElementById("clubFormContent");
 
 if (openFormBtn && clubForm && cancelBtn) {
-  // Open form
+
   openFormBtn.addEventListener("click", () => {
     clubForm.style.display = "block";
   });
 
-  // Cancel form
+
   cancelBtn.addEventListener("click", () => {
     clubForm.style.display = "none";
   });
 
-  // Handle submission
+
   if (clubFormContent) {
     clubFormContent.addEventListener("submit", e => {
       e.preventDefault();
@@ -186,14 +166,14 @@ if (openFormBtn && clubForm && cancelBtn) {
 /*REVIEWS SECTION*/
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Convert ratings to stars
+
   document.querySelectorAll(".revStars").forEach(starBox => {
     const rating = parseFloat(starBox.dataset.rating);
     const percent = Math.min((rating / 5) * 100, 100);
     starBox.style.setProperty("--rating-percent", `${percent}%`);
   });
 
-  // Handle "Read More" toggle
+
   document.querySelectorAll(".readMore").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
@@ -282,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Open thread modal
+ 
   document.querySelectorAll(".threadBtn").forEach(button => {
     button.addEventListener("click", () => {
       const id = button.dataset.thread;
@@ -305,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Close modal
+ 
   closeModal.addEventListener("click", () => modal.style.display = "none");
   window.addEventListener("click", (e) => {
     if (e.target === modal) modal.style.display = "none";
@@ -353,7 +333,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `;
 
-    // --- LENDER SELECTION ---
+    /*LENDER SELECTION */
     const lenders = [
       { name: "Alice Smith", distance: "2 km", maxDays: 14 },
       { name: "Bob Johnson", distance: "5 km", maxDays: 21 },
@@ -386,7 +366,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     borrowForm.style.display = "none";
   }
 
-  // Handle borrow form submission
+
   borrowForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const fullName = document.getElementById("fullName").value.trim();
@@ -444,7 +424,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       </div>
     `;
 
-    // --- SELLER SELECTION (Realistic People) ---
+    /* SELLER SELECTION */
     const sellers = [
       { name: "Anele Mthembu", location: "2 km away", price: "R120" },
       { name: "Thabo Nkosi", location: "5 km away", price: "R100" },
@@ -453,12 +433,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       { name: "Johan van der Merwe", location: "1 km away", price: "R130" }
     ];
 
-    // Create seller select dropdown
+
     const sellerSelect = document.createElement("select");
     sellerSelect.id = "sellerSelect";
     sellerSelect.required = true;
 
-    // Add a placeholder option
     const placeholderOption = document.createElement("option");
     placeholderOption.value = "";
     placeholderOption.textContent = "Select a seller";
@@ -466,7 +445,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     placeholderOption.selected = true;
     sellerSelect.appendChild(placeholderOption);
 
-    // Add seller options
+  
     sellers.forEach(seller => {
       const option = document.createElement("option");
       option.value = seller.name;
@@ -487,7 +466,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     buyForm.style.display = "none";
   }
 
-  // --- Handle purchase form submission ---
+ 
   buyForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const fullName = document.getElementById("fullName").value.trim();
@@ -508,10 +487,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("addBookForm");
   const bookList = document.getElementById("bookList");
 
-  // Load saved books
+
   let books = JSON.parse(localStorage.getItem("lenderBooks")) || [];
 
-  // Function to display books
+
   function renderBooks() {
     bookList.innerHTML = "";
 
@@ -535,7 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Handle form submission
+ 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -564,7 +543,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let books = JSON.parse(localStorage.getItem("sellerBooks")) || [];
 
-  // Render books
+
   function renderBooks() {
     bookList.innerHTML = "";
 
@@ -587,7 +566,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bookList.appendChild(li);
     });
 
-    // Add delete functionality
+
     document.querySelectorAll(".delete-btn").forEach(button => {
       button.addEventListener("click", (e) => {
         const index = e.target.dataset.index;
@@ -598,7 +577,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Handle form submission
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -630,8 +609,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let startIndex = 0;
     const maxResultsPerFetch = 4;
-    let expanded = false; // Track toggle state
-    let allBooks = [];    // Store all loaded books
+    let expanded = false; 
+    let allBooks = [];   
 
     async function fetchBooks() {
       const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(categoryName)}&startIndex=${startIndex}&maxResults=${maxResultsPerFetch}`;
@@ -670,18 +649,18 @@ document.addEventListener("DOMContentLoaded", () => {
       viewMore.textContent = expanded ? "...show less" : "...view more";
     }
 
-    // Load initial 4 books
+  
     (async () => {
       await fetchBooks();
       renderBooks();
     })();
 
-    // Toggle expand/collapse
+  
     viewMore.addEventListener("click", async e => {
       e.preventDefault();
 
       if (!expanded) {
-        // Fetch next batch of books if not already loaded enough
+
         await fetchBooks();
       }
 
@@ -690,6 +669,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
+
+
+/*============================
+ GSAP Animations for Homepage
+ ============================*/
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+const heroTimeline = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
+
+heroTimeline
+  .from(".hero h1", { opacity: 0, y: -50 })
+  .from(".hero p", { opacity: 0, y: 20 }, "-=0.5")
+  .from(".heroButtons button", { opacity: 0, y: 30, scale: 0.8, stagger: 0.2, ease: "back.out(1.7)" });
+
+
+document.querySelectorAll(".heroButtons button").forEach(btn => {
+  btn.addEventListener("mouseenter", () => {
+    gsap.to(btn, { scale: 1.1, duration: 0.3, ease: "power1.out" });
+  });
+  btn.addEventListener("mouseleave", () => {
+    gsap.to(btn, { scale: 1, duration: 0.3, ease: "power1.out" });
+  });
+});
+
+
+gsap.from(".categories li", {
+  opacity: 0,
+  y: 50,
+  scale: 0.8,
+  rotation: -5,
+  duration: 1,
+  stagger: 0.15,
+  ease: "back.out(1.7)",
+  scrollTrigger: {
+    trigger: ".categories",
+    start: "top 80%",
+    toggleActions: "play none none none"
+  }
+});
+
+
+
+
+
 
 
 
